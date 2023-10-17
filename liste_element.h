@@ -24,7 +24,7 @@ Element* next(Element* e);
 /// \date 10/10/2023
 Element* previous(Element* e); 
 /// \param[in] Element l'element dont on cherche le predecesseur
-/// \return le successeur de e
+/// \return le predecesseur de e
 
 /// \brief renvoie la valeur contenue dans e en tant que pointeur
 /// \author Yael Bourguignon
