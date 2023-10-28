@@ -40,21 +40,17 @@ int countCols(const char *filename){
     }
 
     int columns = 0;
-    int ch;
+    char ch;
     int inField = 0;
 
     while ((ch = fgetc(file)) != EOF){
         if (ch == ','){
-            if (inField){
-                continue;
-            }
             columns++;
         }
         else if (ch == '\n'){
             break;
-        } else {
-            inField = 1;
         }
+
     }
 
     fclose(file);
