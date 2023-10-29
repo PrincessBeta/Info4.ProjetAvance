@@ -41,6 +41,7 @@ void getCode(char* num_etu, char* code,const char* voteType){
         {
             strcpy(code,&(matrix->data[i][0][9]));
             strtok(code,"\n");
+            freeMatrix(matrix,nbrows,nbcols);
             return;
         }
         
@@ -92,9 +93,8 @@ void getVotes(char* surname, char* name, char* num_etu,const char* voteType, cha
                 strcat(votes,matrix->data[i][j]);
                 strcat(votes," ");
             }
-            return;
         }
     }
-    
+    freeMatrix(matrix,nbrows,nbcols);
     
 }
