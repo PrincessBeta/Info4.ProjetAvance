@@ -7,7 +7,10 @@
 /// \brief Liste
 /// \author Yael Bourguignon
 /// \date 10/10/2023
-typedef struct _List List;
+typedef struct _List {
+    int size;
+    Element* sentinel;
+} List;
 
 /// \brief renvoie la longueur de la liste l
 /// \author Yael Bourguignon

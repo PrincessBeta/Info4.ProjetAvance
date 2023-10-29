@@ -1,7 +1,20 @@
 #include <stdio.h>
 #include "lecture_csv.h"
+#include "utils.h"
+#include <string.h>
 
-int main() {
+int main(int argc,const char* argv[]) {
+    if (argc != 5) { // test de l'usage
+        perror("Usage : sha256 type_de_vote nom prenom num_etudiant, all in lowercase \n");
+        exit(1);
+    }
+
+    //treating the input
+    int voteType = (strcmp(argv[1],'condorcet') == 0) ? VOTE_CONDORCET : VOTE_JUGEMENT;
+    int nom = strcpy(nom,argv[2]);
+    int prenom = strcpy(nom,argv[3]);
+    int numEtu = strcpy(nom,argv[4]);
+
     const char *filename = "VoteCondorcet.csv"; // Replace with your CSV file path
 
     // Use the countRows and countCols functions to determine the dimensions of the CSV data.
@@ -22,7 +35,9 @@ int main() {
     }
 
     // Use the printMatrix function to display the CSV data.
-    printMatrix(matrix, nbrows, nbcolumns);
+    // printMatrix(matrix, nbrows, nbcolumns);
+
+    getVotesPersonne(nom,prenom,numEtu,voteType);
 
     // Free the allocated memory.
     freeMatrix(matrix, nbrows, nbcolumns);

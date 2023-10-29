@@ -1,10 +1,7 @@
 #include "liste.h"
 #include "stdlib.h"
 
-struct _List {
-    int size;
-    Element* sentinel;
-};
+
 
 int list_size(List *l) {
     return l->size;
