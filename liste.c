@@ -1,6 +1,6 @@
 #include "liste.h"
 #include "stdlib.h"
-
+#include <stdio.h>
 
 
 int list_size(List *l) {
@@ -71,5 +71,15 @@ void* list_at(List *l, int n) {
         e = e->next;
     }
     return e->value;
+    
+}
+
+void print_list(List *l) {
+    Element *e = l->sentinel->next;
+    while (e != l->sentinel)
+    {
+        printf("%d, ",e->value);
+    }
+    printf("\n");
     
 }

@@ -57,4 +57,9 @@ List* list_pop_back(List *l);
 /// \date 10/10/2023
 void* list_at(List *l, int n);
 
+/// \brief affiche tous les elements de la liste
+/// \author Yael Bourguignon
+/// \date 29/10/2023
+void print_list(List* l);
+
 #endif

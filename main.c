@@ -2,6 +2,7 @@
 #include "lecture_csv.h"
 #include "utils.h"
 #include <string.h>
+#include <stdlib.h>
 
 int main(int argc,const char* argv[]) {
     if (argc != 5) { // test de l'usage
@@ -10,10 +11,13 @@ int main(int argc,const char* argv[]) {
     }
 
     //treating the input
-    int voteType = (strcmp(argv[1],'condorcet') == 0) ? VOTE_CONDORCET : VOTE_JUGEMENT;
-    int nom = strcpy(nom,argv[2]);
-    int prenom = strcpy(nom,argv[3]);
-    int numEtu = strcpy(nom,argv[4]);
+    const char* voteType = argv[1];
+    char* nom = malloc(MAX_NAME_SIZE*sizeof(char));
+    char* prenom= malloc(MAX_NAME_SIZE*sizeof(char));
+    char* numEtu= malloc(MAX_NAME_SIZE*sizeof(char));
+    strcpy(nom,argv[2]);
+    strcpy(prenom,argv[3]);
+    strcpy(numEtu,argv[4]);
 
     const char *filename = "VoteCondorcet.csv"; // Replace with your CSV file path
 
@@ -36,8 +40,10 @@ int main(int argc,const char* argv[]) {
 
     // Use the printMatrix function to display the CSV data.
     // printMatrix(matrix, nbrows, nbcolumns);
-
-    getVotesPersonne(nom,prenom,numEtu,voteType);
+    char* votes = malloc(MAX_NAME_SIZE*sizeof(char));
+    getVotes(nom,prenom,numEtu,voteType,votes);
+    printf("%s %s : %s \n",nom,prenom,votes);
+    
 
     // Free the allocated memory.
     freeMatrix(matrix, nbrows, nbcolumns);

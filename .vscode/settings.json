@@ -5,6 +5,9 @@
         "utils.h": "c",
         "liste.h": "c",
         "liste_element.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "sha256.h": "c",
+        "lecture_csv.h": "c",
+        "sha256_utils.h": "c"
     }
 }
