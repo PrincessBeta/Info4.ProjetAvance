@@ -24,9 +24,9 @@ typedef struct {
  * Cette fonction lit un fichier CSV et renvoie le nombre de lignes qu'il contient.
  *
  * @param filename Le chemin vers le fichier CSV.
- * @return Le nombre de lignes dans le fichier CSV, ou -1 en cas d'erreur.
+ * @param matrice Un pointeur vers la structure Matrix pour stocker le résultat.
  */
-int countRows(const char *filename);
+void countRows(const char *filename,Matrix *matrice);
 
 /**
  * @brief Compte le nombre de colonnes dans un fichier CSV.
@@ -34,9 +34,9 @@ int countRows(const char *filename);
  * Cette fonction lit un fichier CSV et renvoie le nombre de colonnes qu'il contient.
  *
  * @param filename Le chemin vers le fichier CSV.
- * @return Le nombre de colonnes dans le fichier CSV, ou -1 en cas d'erreur.
+ * @param matrice Un pointeur vers la structure Matrix pour stocker le résultat.
  */
-int countCols(const char *filename);
+void countCols(const char *filename, Matrix *matrice);
 
 /**
  * @brief Crée une matrice à partir d'un fichier CSV.
@@ -44,11 +44,9 @@ int countCols(const char *filename);
  * Cette fonction lit un fichier CSV et crée une structure Matrix pour stocker les données.
  *
  * @param filename Le chemin vers le fichier CSV.
- * @param rows Le nombre de lignes dans les données CSV.
- * @param cols Le nombre de colonnes dans les données CSV.
- * @return Un pointeur vers la structure Matrix créée, ou NULL en cas d'erreur.
+ * @param matrice Un pointeur vers la structure Matrix pour stocker les données.
  */
-Matrix *createMatrix(const char *filename, int rows, int cols);
+void createMatrix(const char *filename, Matrix *matrice);
 
 /**
  * @brief Affiche le contenu d'une matrice CSV.
@@ -56,10 +54,8 @@ Matrix *createMatrix(const char *filename, int rows, int cols);
  * Cette fonction affiche les données stockées dans une matrice CSV sur la console.
  *
  * @param matrix La structure Matrix à afficher.
- * @param nbrows Le nombre de lignes à afficher.
- * @param nbcol Le nombre de colonnes à afficher.
  */
-void printMatrix(Matrix *matrix, int nbrows, int nbcol);
+void printMatrix(Matrix *matrix);
 
 /**
  * @brief Libère la mémoire allouée pour une matrice CSV.
@@ -67,10 +63,8 @@ void printMatrix(Matrix *matrix, int nbrows, int nbcol);
  * Cette fonction libère la mémoire utilisée par une matrice CSV, y compris ses données.
  *
  * @param matrix La structure Matrix à libérer.
- * @param nbrows Le nombre de lignes dans la matrice.
- * @param nbcolumns Le nombre de colonnes dans la matrice.
  */
-void freeMatrix(Matrix *matrix, int nbrows, int nbcolumns);
+void freeMatrix(Matrix matrix);
 
 
 #endif

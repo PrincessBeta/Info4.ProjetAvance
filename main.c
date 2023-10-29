@@ -3,29 +3,29 @@
 
 int main() {
     const char *filename = "VoteCondorcet.csv"; // Replace with your CSV file path
-
+    Matrix matrice;
     // Use the countRows and countCols functions to determine the dimensions of the CSV data.
-    int nbrows = countRows(filename);
-    int nbcolumns = countCols(filename);
+    countRows(filename,&matrice);
+    countCols(filename,&matrice);
 
-    if (nbrows == -1 || nbcolumns == -1) {
+    if (matrice.rows == -1 || matrice.cols == -1) {
         printf("Error while counting rows or columns.\n");
         return 1; // Return an error code
     }
 
     // Use the createMatrix function to read the CSV data into a matrix.
-    Matrix *matrix = createMatrix(filename, nbrows, nbcolumns);
+    createMatrix(filename, &matrice);
 
-    if (matrix == NULL) {
+    if (&matrice == NULL) {
         printf("Error while creating the matrix.\n");
         return 1; // Return an error code
     }
 
     // Use the printMatrix function to display the CSV data.
-    printMatrix(matrix, nbrows, nbcolumns);
+    printMatrix(&matrice);
 
     // Free the allocated memory.
-    freeMatrix(matrix, nbrows, nbcolumns);
+    freeMatrix(matrice);
 
     return 0; // Return 0 to indicate success
 }
