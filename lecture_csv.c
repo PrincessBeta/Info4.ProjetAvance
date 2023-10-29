@@ -157,16 +157,16 @@ void printMatrix(Matrix *matrice){
     }  
 }
 
-void freeMatrix(Matrix matrice) {
-    for (int i = 0; i < matrice.rows; i++) {
-        for (int j = 0; j < matrice.cols; j++) {
-            if (matrice.data[i][j] != NULL) {
-                free(matrice.data[i][j]);
+void freeMatrix(Matrix *matrice) {
+    for (int i = 0; i < matrice->rows; i++) {
+        for (int j = 0; j < matrice->cols; j++) {
+            if (matrice->data[i][j] != NULL) {
+                free(matrice->data[i][j]);
             }
         }
-        free(matrice.data[i]);
+        free(matrice->data[i]);
     }
-    free(matrice.data);
+    free(matrice->data);
 }
 
 

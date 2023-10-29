@@ -30,18 +30,17 @@ void getCode(char* num_etu, char* code,const char* voteType){
     strcpy(filename,"code");
     strcat(filename,voteTypeAlt);
     strcat(filename,"NumEtu.csv");
-    
-    int nbrows = countRows(filename);
-    int nbcols = countCols(filename);
-    Matrix *matrix = createMatrix(filename,nbrows,nbcols);
 
-    for (int i = 0; i < nbrows; i++)
+    Matrix *matrix;
+    createMatrix(filename,matrix);
+
+    for (int i = 0; i < matrix->rows; i++)
     {
         if (strncmp(matrix->data[i][0], num_etu,8) == 0)
         {
             strcpy(code,&(matrix->data[i][0][9]));
             strtok(code,"\n");
-            freeMatrix(matrix,nbrows,nbcols);
+            freeMatrix(matrix);
             return;
         }
         
@@ -80,12 +79,12 @@ void getVotes(char* surname, char* name, char* num_etu,const char* voteType, cha
     strcpy(filename,"Vote");
     strcat(filename,voteTypeAlt);
     strcat(filename,".csv");
-    int nbrows = countRows(filename);
-    int nbcols = countCols(filename);
-    Matrix *matrix = createMatrix(filename,nbrows,nbcols);
+
+    Matrix *matrix;
+    createMatrix(filename,matrix);
     strcpy(votes,"");
 
-    for (int i = 4; i < nbrows; i++)
+    for (int i = 4; i < matrix->rows; i++)
     {
         if (strcmp(matrix->data[i][3],key) == 0) {
             for (int j = 4; j < 14; j++)
@@ -95,6 +94,6 @@ void getVotes(char* surname, char* name, char* num_etu,const char* voteType, cha
             }
         }
     }
-    freeMatrix(matrix,nbrows,nbcols);
+    freeMatrix(matrix);
     
 }
