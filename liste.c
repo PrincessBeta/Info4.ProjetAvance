@@ -73,13 +73,3 @@ void* list_at(List *l, int n) {
     return e->value;
     
 }
-
-void print_list(List *l) {
-    Element *e = l->sentinel->next;
-    while (e != l->sentinel)
-    {
-        printf("%d, ",e->value);
-    }
-    printf("\n");
-    
-}

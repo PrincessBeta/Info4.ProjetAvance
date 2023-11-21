@@ -64,7 +64,7 @@ void printMatrix(Matrix *matrix);
  *
  * @param matrix La structure Matrix à libérer.
  */
-void freeMatrix(Matrix matrix);
+void freeMatrix(Matrix *matrix);
 
 
 #endif
