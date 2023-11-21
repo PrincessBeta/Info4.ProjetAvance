@@ -23,6 +23,6 @@ int main(int argc,const char* argv[]) {
     getVotes(nom,prenom,numEtu,voteType,votes);
     printf("%s %s : %s \n",nom,prenom,votes);
 
-
+  
     return 0; // Return 0 to indicate success
 }
