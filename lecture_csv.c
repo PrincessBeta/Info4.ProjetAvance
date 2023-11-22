@@ -171,6 +171,7 @@ void freeMatrix(Matrix *matrice) {
         free(matrice->data[i]);
     }
     free(matrice->data);
+    matrice->data = NULL;
 }
 
 
