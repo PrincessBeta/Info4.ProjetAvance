@@ -41,7 +41,8 @@ void countCols(const char *filename,Matrix *matrice){
         exit(1);
     }
 
-    int columns = 0;
+    //changé de 0 a 1 par Yael
+    int columns = 1;
     char ch;
 
     while ((ch = fgetc(file)) != EOF){
@@ -59,6 +60,9 @@ void countCols(const char *filename,Matrix *matrice){
 
 void createMatrix(const char *filename, Matrix *matrice){
     
+    //ajouté par Yael le 22/11/23 pour rendre le code plus lisible.
+    countCols(filename,matrice);
+    countRows(filename,matrice);
     char *Tab = malloc(MAX_PHRASE_LENGTH * sizeof(char));
 
     if (Tab == NULL) {
