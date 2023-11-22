@@ -30,17 +30,16 @@ void getCode(char* num_etu, char* code,const char* voteType){
     strcpy(filename,"code");
     strcat(filename,voteTypeAlt);
     strcat(filename,"NumEtu.csv");
+    Matrix matrix;
+    createMatrix(filename,&matrix);
 
-    Matrix *matrix;
-    createMatrix(filename,matrix);
-
-    for (int i = 0; i < matrix->rows; i++)
+    for (int i = 0; i < matrix.rows; i++)
     {
-        if (strncmp(matrix->data[i][0], num_etu,8) == 0)
+        if (strncmp(matrix.data[i][0], num_etu,8) == 0)
         {
-            strcpy(code,&(matrix->data[i][0][9]));
+            strcpy(code,&(matrix.data[i][0][9]));
             strtok(code,"\n");
-            freeMatrix(matrix);
+            freeMatrix(&matrix);
             return;
         }
         
@@ -52,7 +51,6 @@ char* getUncrpytedKey(char* surname, char* name, char* num_etu,const char* voteT
     int uncrypted_key_size = strlen(surname) + 1 + strlen(name) + strlen(num_etu)+1;
     char* uncrypted_key = malloc(sizeof(char)*uncrypted_key_size); 
     char* code = malloc(MAX_NAME_SIZE*sizeof(char));
-
     uppercase(surname);
     strcpy(uncrypted_key,surname);
     strcat(uncrypted_key," ");
@@ -71,7 +69,6 @@ void getVotes(char* surname, char* name, char* num_etu,const char* voteType, cha
     char* uncrypted_key = getUncrpytedKey(surname,name,num_etu,voteType);
     char key[SHA256_BLOCK_SIZE*2+1];
     encryptKey(uncrypted_key,key);
-
     char* filename = malloc(MAX_NAME_SIZE*sizeof(char));
     char* voteTypeAlt = malloc(MAX_NAME_SIZE*sizeof(char));
     strcpy(voteTypeAlt,voteType);
@@ -80,20 +77,20 @@ void getVotes(char* surname, char* name, char* num_etu,const char* voteType, cha
     strcat(filename,voteTypeAlt);
     strcat(filename,".csv");
 
-    Matrix *matrix;
-    createMatrix(filename,matrix);
+    Matrix matrix;
+    createMatrix(filename,&matrix);
     strcpy(votes,"");
 
-    for (int i = 4; i < matrix->rows; i++)
+    for (int i = 4; i < matrix.rows; i++)
     {
-        if (strcmp(matrix->data[i][3],key) == 0) {
+        if (strcmp(matrix.data[i][3],key) == 0) {
             for (int j = 4; j < 14; j++)
             {
-                strcat(votes,matrix->data[i][j]);
+                strcat(votes,matrix.data[i][j]);
                 strcat(votes," ");
             }
         }
     }
-    freeMatrix(matrix);
+    freeMatrix(&matrix);
     
 }

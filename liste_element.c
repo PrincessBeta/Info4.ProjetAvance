@@ -5,6 +5,10 @@ Element* next(Element* e) {
     return e->next;
 }
 
-void* value(Element* e) {
+Element* previous(Element* e){
+    return e->previous;
+}
+
+int value(Element* e) {
     return e->value;
 }

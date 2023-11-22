@@ -1,75 +1,143 @@
-#include "liste.h"
-#include "stdlib.h"
+
 #include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <assert.h>
+#include "liste.h"
+
+
+List *list_create() {
+	List *l = malloc(sizeof(List));
+	Element *s = malloc(sizeof(Element));
+	l->size = 0;
+	l->sentinel = s;
+	s->next = s;
+	s->previous = s;
+	
+	return l;
+}
+
+
+List *list_push_back(List *l, int v) {
+	Element *e = malloc(sizeof(Element));
+	e->value = v;
+	e->next = l->sentinel;
+	e->previous = l->sentinel->previous;
+	l->sentinel->previous->next = e;
+	l->sentinel->previous = e;
+	l->size++;
+	return l;
+}
+
+void list_delete(List **l) {
+	List *l2 = *l;
+	for(Element *e = l2->sentinel->next->next; e != l2->sentinel; e =e->next){
+		free(e->previous);
+	}
+	free(l2->sentinel->previous);
+	free(l2->sentinel);
+	free(l2);
+	l=NULL;
+}
+
+List *list_push_front(List *l, int v) {
+	Element *e = malloc(sizeof(Element));
+	e->value = v;
+	e->previous = l->sentinel;
+	e->next = l->sentinel->next;
+	l->sentinel->next->previous = e;
+	l->sentinel->next = e;
+	l->size++;
+	return l;
+}
+
+int list_front(List *l) {
+	assert(!list_is_empty(l));
+	return l->sentinel->next->value;
+}
+
+int list_back(List *l) {
+	assert(!list_is_empty(l));
+	return l->sentinel->previous->value;
+}
+
+List *list_pop_front(List *l) {
+	Element *e = l->sentinel->next;
+	l->sentinel->next = e->next;
+	e->next->previous = l->sentinel;
+
+	l->size--;
+	free(e);
+	return l;
+}
+
+List *list_pop_back(List *l){
+	Element *e = l->sentinel->previous;
+	l->sentinel->previous = e->previous;
+	e->previous->next = l->sentinel;
+	l->size--;
+	free(e);
+	return l;
+}
+
+List *list_insert_at(List *l, int p, int v) {
+	Element *new = malloc(sizeof(Element));
+	new->value = v;
+
+	Element *e = l->sentinel;
+	for (int i = 0; i <= p; i++) e = e->next;
+
+	new->previous = e->previous;
+	new->next = e;
+	e->previous->next = new;
+	e->previous = new;
+
+	l->size ++;
+	return l;
+}
+
+List *list_remove_at(List *l, int p) {
+	Element *e = l->sentinel;
+
+	for (int i = 0; i <= p; i++) e = e->next;
+
+	e->next->previous = e->previous;
+	e->previous->next = e->next;
+	l->size--;
+	free(e);
+	return l;
+}
+
+
+int list_at(List *l, int p) {
+	Element *e = l->sentinel;
+	for (int i = 0; i <= p; i++) e = e->next;
+	return e->value;
+}
+
+
+bool list_is_empty(List *l) {
+	return l->sentinel->next == l->sentinel;
+}
 
 
 int list_size(List *l) {
-    return l->size;
+	return l->size;
 }
 
-List* list_create(){
-    List* l = malloc(sizeof(List));
-    Element* sentinel = malloc(sizeof(Element));
-    l->size = 0;
-    l->sentinel = sentinel;
-    return l;
-}
 
-void* list_front(List *l){
-    return l->sentinel->next;
-}
+List *list_map(List *l, SimpleFunctor f){
 
-void* list_back(List *l){
-    return l->sentinel->prev;
-}
-
-List* list_push_front(List *l, void* value){
-    Element* e = malloc(sizeof(Element));
-    e->value = value;
-    e->prev = l->sentinel;
-    e->next = l->sentinel->next;
-    l->sentinel->next->prev = e;
-    l->sentinel->next = e;
-    l->size++;
-    return l;
-}
-
-List* list_push_back(List *l, void* value){
-    Element* e = malloc(sizeof(Element));
-    e->value = value;
-    e->next = l->sentinel;
-    e->prev = l->sentinel->prev;
-    l->sentinel->prev->next = e;
-    l->sentinel->prev = e;
-    l->size++;
-    return l;
-}
-
-List* list_pop_front(List *l){
-    Element *e = l->sentinel->next;
-	l->sentinel->next = e->next;
-	e->next->prev = l->sentinel;
-
-	l->size--;
-	free(e);
+	for(Element *e = l->sentinel->next; e != l->sentinel; e =e->next){
+		e -> value = f(e->value);
+	}
 	return l;
 }
 
-List* list_pop_back(List *l){
-    Element *e = l->sentinel->prev;
-	l->sentinel->prev = e->prev;
-	e->prev->next = l->sentinel;
-	l->size--;
-	free(e);
-	return l;
-}
 
-void* list_at(List *l, int n) {
-    Element *e = l->sentinel;
-    for (int i = 0; i < n; i++)
-    {
-        e = e->next;
-    }
-    return e->value;
-    
+List *list_reduce(List *l, ReduceFunctor f, void *userData) {
+	for(Element *e = l->sentinel->next; e != l->sentinel; e =e->next){
+		f(e->value,userData);
+	}
+	return l;
 }
