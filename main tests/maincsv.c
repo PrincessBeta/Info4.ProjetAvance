@@ -25,7 +25,7 @@ int main() {
     printMatrix(&matrice);
 
     // Free the allocated memory.
-    freeMatrix(matrice);
+    freeMatrix(&matrice);
 
     return 0; // Return 0 to indicate success
 }
