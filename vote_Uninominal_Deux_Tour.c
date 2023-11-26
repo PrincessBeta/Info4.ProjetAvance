@@ -3,8 +3,8 @@
 #include <string.h>
 #include "lecture_csv.h"
 /**
- * @file vote_Uninominal_Deux_Tour.c
- * @brief Programme principal pour le vote uninominal à deux tours
+ * @file vote_Uninominal_Un_Tour.c
+ * @brief Programme principal pour le vote uninominal à un tour
  * @author Yousra Arroui
  */
 
@@ -37,7 +37,6 @@ void printTable(int **table, int numRows, int numCols, const char *rowLabel, con
     }
 }
 
-
 int **createVoteTable(Matrix *csvMatrix)
 {
     int **voteTable;
@@ -56,7 +55,6 @@ int **createVoteTable(Matrix *csvMatrix)
     }
 
     int numCols = 10;
-
     for (int i = 1; i < csvMatrix->rows; i++)
     {
         voteTable[i - 1] = (int *)malloc(numCols * sizeof(int));
@@ -104,31 +102,48 @@ void printTableauScore(int *tableauScore, int numCols)
 {
     printf("\nTableau de Scores :\n");
     printf("\tBurger\tScore\n");
-    printf("\t------- --------\n");
+    printf("\t--------\t--------\n");
     for (int i = 0; i < numCols; i++)
     {
         printf("\t%d\t%d\n", i + 1, tableauScore[i]);
     }
 }
 
+int findWinTour2(int *tableauScore, int numBurgers, int numScores, int winners[2])
+{
+    return winners[0] + 1;
+}
+
 int findWinner(int *tableauScore, int numBurgers, int numScores)
 {
-    int min = tableauScore[0];
-    int indice = 0;
+    int min1 = tableauScore[0];
+    int min2 = tableauScore[1];
+    int indice1 = 0;
+    int indice2 = 1;
     for (int i = 1; i < numBurgers; i++)
     {
-        if (tableauScore[i] < min)
+        if (tableauScore[i] < min1)
         {
-            min = tableauScore[i];
-            indice = i;
+            min2 = min1;
+            indice2 = indice1;
+            min1 = tableauScore[i];
+            indice1 = i;
+        }
+        else if (tableauScore[i] < min2)
+        {
+            min2 = tableauScore[i];
+            indice2 = i;
         }
     }
-    return indice + 1;
+
+    int winners[2] = {indice1, indice2};
+
+    return findWinTour2(tableauScore, numBurgers, numScores, winners);
 }
 
 int main()
 {
-    const char *filename = "voteJugement.csv";
+    const char *filename = "voteJugement.csv"; 
     Matrix matrice;
     countRows(filename, &matrice);
     countCols(filename, &matrice);
