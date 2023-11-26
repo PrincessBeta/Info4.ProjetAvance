@@ -2,7 +2,7 @@
 #include "lecture_csv.h"
 
 int main() {
-    const char *filename = "VoteCondorcet.csv";
+    const char *filename = "VoteJugement.csv";
     Matrix matrice;
 
     countRows(filename,&matrice);
@@ -14,11 +14,6 @@ int main() {
     }
 
     createMatrix(filename, &matrice);
-
-    if (&matrice.data == NULL) {
-        printf("Error while creating the matrix.\n");
-        return 1;
-    }
 
     printMatrix(&matrice);
 

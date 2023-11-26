@@ -3,11 +3,11 @@
 #include <string.h>
 #include "lecture_csv.h"
 /**
- * @file vote_Uninominal_Deux_Tour.c
+ * @file vote_Uninominal.c
  * @brief Programme principal pour le vote uninominal à deux tours
  * @author Yousra Arroui
  */
-
+//Suivre le fichier suivi.txt pour les étapes de compilation et d'exécution
 void printTable(int **table, int numRows, int numCols, const char *rowLabel, const char *colLabel)
 {
     printf("\t%s\t", colLabel);
