@@ -2,7 +2,7 @@
 #define LECTURECSV_H
 /**
  * @file lecture_csv.h
- * @brief Ce fichier contient les déclarations et la structures pour lire and travailler avec des données CSV
+ * @brief Ce fichier contient les déclarations et la structures pour lire et travailler avec des données CSV
  * @author Yousra Arroui
  * @date 17/10/2023
 */

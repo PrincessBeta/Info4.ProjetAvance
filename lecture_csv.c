@@ -151,7 +151,6 @@ void printMatrix(Matrix *matrice){
     }
     printf("\n");
 
-    // Afficher les données à partir de la deuxième ligne
     for (int i = 1; i < matrice->rows; i++) {
         for (int j = 0; j < matrice->cols; j++) {
             if (matrice->data[i][j] != NULL) {
