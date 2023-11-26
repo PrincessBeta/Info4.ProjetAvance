@@ -7,14 +7,14 @@
 #include "sha256_utils.h"
 
 void uppercase(char* string){
-    for (int i = 0; i < strlen(string); i++)
+    for (unsigned int i = 0; i < strlen(string); i++)
     {
         string[i] = toupper(string[i]);
     }
 }
 
 void formatName(char* string){
-    for (int i = 0; i < strlen(string); i++)
+    for (unsigned int i = 0; i < strlen(string); i++)
     {
         string[i] = tolower(string[i]);
     }

@@ -1,0 +1,7 @@
+Pour compiler les autres mains, remplacer main_uninominales par un des main du dossier /autres main
+Pour la compilation, utiliser simplement make
+pour tester la méthode à un tour 
+./bin/uni.exe VoteJugement.csv uni2
+pour tester la méthode à deux tour
+./bin/uni.exe VoteJugement.csv uni2
+on peut les tester sur VoteCondorcet.csv

@@ -1,5 +1,5 @@
 CC=gcc
-#CFLAGS=-std=c99 -Wextra -Wall -Werror -pedantic
+CFLAGS=-std=c99 -Wextra -Wall -Werror -pedantic
 LDFLAGS=-lm
 
 ifeq ($(DEBUG),yes)
@@ -10,7 +10,7 @@ else
 	LDFLAGS +=
 endif
 
-EXEC= bin/sha.exe
+EXEC= bin/uni.exe
 SRC= $(wildcard *.c)
 OBJ= $(SRC:.c=.o)
 
