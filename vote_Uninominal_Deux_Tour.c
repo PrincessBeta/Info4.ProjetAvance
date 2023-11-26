@@ -74,35 +74,35 @@ int **createVoteTable(Matrix *csvMatrix)
 
 int *createTableauScore(int **voteTable, int numCols, int numRows)
 {
-    int *scoreMatrix;
-    scoreMatrix = (int *)malloc(numCols * sizeof(int));
-    if (scoreMatrix == NULL)
+    int *tab_score;
+    tab_score = (int *)malloc(numCols * sizeof(int));
+    if (tab_score == NULL)
     {
         fprintf(stderr, "Erreur : Échec de l'allocation mémoire pour la matrice de scores\n");
         exit(1);
     }
     for (int i = 0; i < numCols; i++)
     {
-        scoreMatrix[i] = 0;
+        tab_score[i] = 0;
     }
     for (int i = 0; i < numCols; i++)
     {   
         for (int j = 0; j < numRows; j++)
         {
             if (voteTable[j][i] != -1){
-                scoreMatrix[i] += voteTable[j][i];
+                tab_score[i] += voteTable[j][i];
             }
             
         }
     }
-    return scoreMatrix;
+    return tab_score;
 }
 
 void printTableauScore(int *tableauScore, int numCols)
 {
     printf("\nTableau de Scores :\n");
     printf("\tBurger\tScore\n");
-    printf("\t--------\t--------\n");
+    printf("\t------- --------\n");
     for (int i = 0; i < numCols; i++)
     {
         printf("\t%d\t%d\n", i + 1, tableauScore[i]);
@@ -143,7 +143,7 @@ int findWinner(int *tableauScore, int numBurgers, int numScores)
 
 int main()
 {
-    const char *filename = "voteJugement.csv"; 
+    const char *filename = "voteJugement.csv"; // peut être changé par voteCondorcet.csv
     Matrix matrice;
     countRows(filename, &matrice);
     countCols(filename, &matrice);

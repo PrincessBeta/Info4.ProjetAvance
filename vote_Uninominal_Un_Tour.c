@@ -128,7 +128,7 @@ int findWinner(int *tableauScore, int numBurgers, int numScores)
 
 int main()
 {
-    const char *filename = "voteJugement.csv";
+    const char *filename = "voteJugement.csv"; // peut être changé par voteCondorcet.csv
     Matrix matrice;
     countRows(filename, &matrice);
     countCols(filename, &matrice);
