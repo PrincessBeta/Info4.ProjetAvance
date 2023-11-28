@@ -7,7 +7,7 @@
 /// \date 10/10/2023
 typedef struct _Element
 {
-    int value;
+    void* value;
     struct _Element* next;
     struct _Element* previous;
 } Element;
@@ -31,7 +31,7 @@ Element* previous(Element* e);
 /// \date 10/10/2023
 /// \param[in] Element l'element dont on cherche la valeur
 /// \return le pointeur contenu dans e
-int value(Element* e);
+void* value(Element* e);
 
 
 #endif

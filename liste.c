@@ -18,7 +18,7 @@ List *list_create() {
 }
 
 
-List *list_push_back(List *l, int v) {
+List *list_push_back(List *l, void* v) {
 	Element *e = malloc(sizeof(Element));
 	e->value = v;
 	e->next = l->sentinel;
@@ -40,7 +40,7 @@ void list_delete(List **l) {
 	l=NULL;
 }
 
-List *list_push_front(List *l, int v) {
+List *list_push_front(List *l, void* v) {
 	Element *e = malloc(sizeof(Element));
 	e->value = v;
 	e->previous = l->sentinel;
@@ -51,12 +51,12 @@ List *list_push_front(List *l, int v) {
 	return l;
 }
 
-int list_front(List *l) {
+void* list_front(List *l) {
 	assert(!list_is_empty(l));
 	return l->sentinel->next->value;
 }
 
-int list_back(List *l) {
+void* list_back(List *l) {
 	assert(!list_is_empty(l));
 	return l->sentinel->previous->value;
 }
@@ -80,7 +80,7 @@ List *list_pop_back(List *l){
 	return l;
 }
 
-List *list_insert_at(List *l, int p, int v) {
+List *list_insert_at(List *l, int p, void* v) {
 	Element *new = malloc(sizeof(Element));
 	new->value = v;
 
@@ -109,7 +109,7 @@ List *list_remove_at(List *l, int p) {
 }
 
 
-int list_at(List *l, int p) {
+void* list_at(List *l, int p) {
 	Element *e = l->sentinel;
 	for (int i = 0; i <= p; i++) e = e->next;
 	return e->value;
