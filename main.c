@@ -6,22 +6,40 @@
 #include<unistd.h>
 #include<time.h>
 #include"liste.h"
-
-int main()
-{
-    List *l = list_create();
-    int* i = malloc(sizeof(int));
-    int* j = malloc(sizeof(int));
-    *i = 1;
-    *j = 2;
-    
-    list_push_front(l,i);
-    list_push_front(l,j);
-    
-    printf("%d \n",*(int*)list_front(l));
-    l = list_pop_front(l);
-    printf("%d \n",*(int*)list_front(l));
+#include"graphe.h"
 
 
-    return 0;
+
+int main() {
+    Graphe * g = graphe_create();
+    Sommet a,b,c;
+    a = "A";
+    b = "B";
+    c = "C";
+    graphe_add_sommet(g,a);
+    graphe_add_sommet(g,b);
+    graphe_add_sommet(g,c);
+
+    graphe_add_sommet(g,a);
+    Arete * ar = malloc(sizeof(Arete));
+    ar->origine = a;
+    ar->arrivee = b;
+    ar->poid = 1;
+    graphe_add_arete(g,ar);
+
+
+    printf("nb sommet : %d\n",list_size(g->listeSommets));
+    printf("Sommets : %s %s %s\n",(char*)list_at(g->listeSommets,0),(char*)list_at(g->listeSommets,1),(char*)list_at(g->listeSommets,2));
+
+    printf("Arete de %s a %s de poids %d\n",((Arete*)list_at(g->listeAretes,0))->origine,((Arete*)list_at(g->listeAretes,0))->arrivee,((Arete*)list_at(g->listeAretes,0))->poid);
+
+    graphe_del_sommet(g,c);
+
+    printf("nb sommet : %d\n",list_size(g->listeSommets));
+
+    graphe_del_sommet(g,a);
+
+    printf("nb sommet : %d\n",list_size(g->listeSommets));
+    printf("nb aretes : %d\n",list_size(g->listeAretes));
+
 }

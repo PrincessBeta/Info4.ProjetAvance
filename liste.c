@@ -125,6 +125,19 @@ int list_size(List *l) {
 	return l->size;
 }
 
+bool list_in(List *l,void * e) {
+	bool in = false;
+	for (int i = 0;i<list_size(l) && !in;i++)
+		in = list_at(l,i) == e;
+	return in;
+}
+
+List * list_del_elt(List * l,void * e) {
+	for (int i = 0;i<list_size(l);i++)
+		if (list_at(l,i) == e) list_remove_at(l,i);
+	return l;
+}
+
 
 List *list_map(List *l, SimpleFunctor f){
 
@@ -141,3 +154,6 @@ List *list_reduce(List *l, ReduceFunctor f, void *userData) {
 	}
 	return l;
 }
+
+
+

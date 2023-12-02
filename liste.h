@@ -67,6 +67,16 @@ List* list_pop_back(List *l);
 /// \date 10/10/2023
 void* list_at(List *l, int n);
 
+/// \brief verifie si l'element e est dans la liste
+/// \author Raphaël Rumin
+/// \date 02/12/2023
+bool list_in(List *l,void * e);
+
+/// \brief supprime toutes les occurences d'un element dans la liste
+/// \author Raphaël Rumin
+/// \date 02/12/2023
+List * list_del_elt(List * l,void * e);
+
 List* list_insert_at(List *l, int p, void* v);
 
 List* list_remove_at(List *l, int p);
