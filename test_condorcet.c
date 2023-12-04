@@ -9,6 +9,7 @@
 #include"graphe.h"
 #include"lecture_csv.h"
 #include"condorcet.h"
+#include"utils.h"
 
 
 int main() {
@@ -38,7 +39,7 @@ int main() {
     printf("TEST CONDORCET : \n");
 
     const char *filename = "VoteJugement.csv";
-    Matrix * matrice = malloc(sizeof(matrice));
+    Matrix * matrice = malloc(sizeof(Matrix));
 
     countRows(filename,matrice);
     countCols(filename,matrice);
@@ -47,7 +48,24 @@ int main() {
 
     printMatrix(matrice);
 
-    Matrix * mat_trim = trim_matrix_moodle(matrice);
-    printf("Trim : %s\n",mat_trim->data[0][0]);
+    Matrix * mat_trim = trim_matrix(matrice,1,4);
     printMatrix(mat_trim);
+
+
+    Matrix * zeros = init_matrice_zero(4,4);
+    printMatrix(zeros);
+
+    Matrix * mat_duel = create_matrice_duel(mat_trim);
+    printMatrix(mat_duel);
+
+    printf("LE GAGNANT EST : %d\n",condorcet(mat_duel));
+
+    Matrix * m = malloc(sizeof(Matrix));
+    countRows(filename,m);
+    countCols(filename,m);
+    createMatrix("2012.csv",m);
+    printMatrix(m);
+    Matrix * m_trim = trim_matrix(m,1,0);
+    printMatrix(m_trim);
+    printf("Le gagnant est : %d\n",condorcet(m_trim));
 }

@@ -94,3 +94,41 @@ void getVotes(char* surname, char* name, char* num_etu,const char* voteType, cha
     freeMatrix(&matrix);
     
 }
+
+char * itoa(int x){
+    int length = snprintf( NULL, 0, "%d", x );
+    char* str = malloc( length + 1 );
+    snprintf( str, length + 1, "%d", x );
+    return str;
+}
+
+Matrix * init_matrice_zero(int l,int c) {
+    Matrix * mat = malloc(sizeof(Matrix));
+    mat->rows = l;
+    mat->cols = c;
+    mat->data = malloc(l * sizeof(char **));
+    for (int i=0;i<l;i++)
+        mat->data[i] = malloc(sizeof(char*)*c);
+    
+    for (int i = 0; i<l ;i++)
+        for (int j =0; j<c; j++)
+            mat->data[i][j] = "0";
+
+    return mat;
+}
+
+
+Matrix * trim_matrix(Matrix * m,int lig,int col) {
+    Matrix * new_mat = malloc(sizeof(Matrix));
+    new_mat->data = malloc((m->rows-lig) * sizeof(char **));
+    for (int i=0;i<m->rows-lig;i++)
+        new_mat->data[i] = malloc(sizeof(char*)*(m->cols-col));
+    new_mat->rows = m->rows-lig;
+    new_mat->cols = m->cols-col;
+    for (int i = 0;i<m->rows-lig;i++) {
+        for (int j = 0;j<m->cols-col;j++) {
+            new_mat->data[i][j] = m->data[i+lig][j+col];
+        }
+    }
+    return new_mat;
+}
