@@ -47,5 +47,10 @@ Graphe * graphe_del_arrete(Graphe * g,Arete * a);
 /// \date 02/12/2023
 Graphe * graphe_del_sommet(Graphe * g,Sommet s);
 
+/// \brief Vérifie si l'ajout de l'arête crée un cycle.
+/// \author Raphaël Rumin
+/// \date 05/12/2023
+bool would_create_cycle(Graphe * g,Arete * a);
+
 
 #endif

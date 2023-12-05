@@ -44,3 +44,46 @@ int condorcet(Matrix * m) {
     if (verif) return i-1;          //i-1 car l'incrémentation a lieu avant le test dans un for, on le fait donc une fois de trop.
     return -1;                
 }
+
+
+int ind_minimum_ligne(char ** liste,int n) {
+    int mini = 0;
+    for (int i = 1;i<n;i++) 
+        if (atoi(liste[i]) < atoi(liste[mini]) && atoi(liste[i]) != 0) mini = i;
+    return mini;
+}
+
+int condorcet_minimax(Matrix  * m) {
+    int maxi = 0;
+    int col_max = ind_minimum_ligne(m->data[0],m->cols);
+    int col;
+    for (int i = 1;i<m->rows;i++) {
+        col = ind_minimum_ligne(m->data[i],m->cols);
+        if (atoi(m->data[i][col]) > atoi(m->data[maxi][col_max])) {
+            maxi = i;
+            col_max = col;
+        }
+    }
+    return maxi;
+}
+
+Graphe * create_graphe_from_matrice(Matrix * m,char ** candidats) {
+    Graphe * g = graphe_create();
+    for (int i = 0;i<m->rows;i++) {
+        for (int j=0;j<m->cols;j++) {
+            int duel1 = atoi(m->data[i][j]);
+            int duel2 = atoi(m->data[j][i]);
+            if (duel1 > duel2) {
+                Arete * a = malloc(sizeof(Arete));
+                graphe_add_sommet(g,candidats[i]);
+                graphe_add_sommet(g,candidats[j]);
+                a -> origine = candidats[i];
+                a -> arrivee = candidats[j];
+                a -> poid = duel1 - duel2;
+                graphe_add_arete(g,a);
+            }
+        }
+    }
+    return g;
+}
+

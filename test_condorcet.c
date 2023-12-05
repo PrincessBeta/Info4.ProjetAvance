@@ -38,7 +38,7 @@ int main() {
 
     printf("TEST CONDORCET : \n");
 
-    const char *filename = "VoteJugement.csv";
+    const char *filename = "csv/VoteJugement.csv";
     Matrix * matrice = malloc(sizeof(Matrix));
 
     countRows(filename,matrice);
@@ -63,9 +63,17 @@ int main() {
     Matrix * m = malloc(sizeof(Matrix));
     countRows(filename,m);
     countCols(filename,m);
-    createMatrix("2012.csv",m);
+    createMatrix("csv/calcul2.csv",m);
     printMatrix(m);
     Matrix * m_trim = trim_matrix(m,1,0);
     printMatrix(m_trim);
     printf("Le gagnant est : %d\n",condorcet(m_trim));
+    printf("Le gagnant est : %d\n",condorcet_minimax(m_trim));
+
+    char ** candidats = (m->data)[0];
+    Graphe * graphe = create_graphe_from_matrice(m_trim,candidats);
+
+    printf("nb sommet = %d et nb aretes = %d\n",list_size(graphe->listeAretes),list_size(graphe->listeSommets));
+
+    return 0;
 }

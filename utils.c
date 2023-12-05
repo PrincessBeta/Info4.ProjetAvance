@@ -5,6 +5,7 @@
 #include <ctype.h>
 #include "lecture_csv.h"
 #include "sha256_utils.h"
+#include "liste.h"
 
 void uppercase(char* string){
     for (unsigned int i = 0; i < strlen(string); i++)
@@ -131,4 +132,12 @@ Matrix * trim_matrix(Matrix * m,int lig,int col) {
         }
     }
     return new_mat;
+}
+
+char ** liste_candidat_moodle(char ** tab,int n) {
+    char ** new_tab = malloc((n-4)*sizeof(char*));
+    for (int i=0;i<n-4;i++) {
+        new_tab[i] = tab[i+4];
+    }
+    return new_tab;
 }

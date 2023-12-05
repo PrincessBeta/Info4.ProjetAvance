@@ -45,3 +45,11 @@ Graphe * graphe_del_sommet(Graphe * g,Sommet s) {
     list_del_elt(g->listeSommets,s);
     return g;
 }
+
+bool would_create_cycle(Graphe * g,Arete * a) {
+    bool verif = true;
+    for (int i = 0;i<list_size(g->listeAretes) && verif;i++)
+        verif = ((Arete *)list_at(g->listeAretes,i))->origine == a ->arrivee;
+    return verif;
+}
+

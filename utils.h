@@ -30,4 +30,9 @@ Matrix * trim_matrix(Matrix * m,int l,int c);
 /// \date 04/12/2023
 Matrix * init_matrice_zero(int l,int c);
 
+/// \brief Renvoie le tableau des candidats à partir d'un tableau sous la forme de la première ligne d'un vote moodle.
+/// \author Raphaël Rumin
+/// \date 05/12/2023
+char ** liste_candidat_moodle(char ** tab,int n);
+
 #endif
