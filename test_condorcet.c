@@ -71,9 +71,14 @@ int main() {
     printf("Le gagnant est : %d\n",condorcet_minimax(m_trim));
 
     char ** candidats = (m->data)[0];
+    for (int i = 0;i<m->cols;i++) candidats[i] = delete_newline(candidats[i]);
     Graphe * graphe = create_graphe_from_matrice(m_trim,candidats);
 
-    printf("nb sommet = %d et nb aretes = %d\n",list_size(graphe->listeAretes),list_size(graphe->listeSommets));
+    printf("nb aretes = %d et nb sommets = %d\n",list_size(graphe->listeAretes),list_size(graphe->listeSommets));
+
+    list_map(graphe->listeSommets,print_string);
+    printf("\n");
+    list_map(graphe->listeAretes,print_arete);
 
     return 0;
 }

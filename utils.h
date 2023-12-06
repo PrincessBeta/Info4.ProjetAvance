@@ -35,4 +35,24 @@ Matrix * init_matrice_zero(int l,int c);
 /// \date 05/12/2023
 char ** liste_candidat_moodle(char ** tab,int n);
 
+/// \brief Fonction à utiliser dans un map pour print une liste d'int.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+void * print_int(void * n);
+
+/// \brief Fonction à utiliser dans un map pour print une liste de chaine de caractères.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+void * print_string(void * s);
+
+/// \brief Fonction à utiliser dans un map pour print une liste d'aretes.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+void * print_arete(void * aret);
+
+/// \brief Fonction pour supprimer les '\n' en fin d'un string.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+char * delete_newline(char * s);
+
 #endif

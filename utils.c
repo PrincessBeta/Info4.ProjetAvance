@@ -6,6 +6,7 @@
 #include "lecture_csv.h"
 #include "sha256_utils.h"
 #include "liste.h"
+#include "graphe.h"
 
 void uppercase(char* string){
     for (unsigned int i = 0; i < strlen(string); i++)
@@ -137,7 +138,30 @@ Matrix * trim_matrix(Matrix * m,int lig,int col) {
 char ** liste_candidat_moodle(char ** tab,int n) {
     char ** new_tab = malloc((n-4)*sizeof(char*));
     for (int i=0;i<n-4;i++) {
-        new_tab[i] = tab[i+4];
+        new_tab[i] = delete_newline(tab[i+4]);
     }
     return new_tab;
+}
+
+void * print_int(void * n) {
+    printf("%d",*(int*)n);
+    return n;
+}
+
+void * print_string(void * s) {
+    printf("%s",(char *)s);
+    return s;
+}
+
+
+void * print_arete(void * aret) {
+    Arete * a = (Arete *)aret;
+    printf("Arete de %s a %s de poids %d\n",a->origine,a->arrivee,a->poid);
+    return aret;
+}
+
+char * delete_newline(char * s) {
+    int len = strlen(s);
+    if (s[len-1] == '\n') s[len-1] = '\0'; 
+    return s;
 }

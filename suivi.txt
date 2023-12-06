@@ -4,3 +4,4 @@ Découverte et utilisation de l'outils Live Share pour collaborer.
 incluant la création d'une matrice de duel et le gagnant de Condorcet hors paradoxe.
 05/12 : Développement et tests simples de la méthode Condorcet minimax et des méthodes
 de création des graphes pour les méthodes suivante.
+06/12 : création de fonctions pour mieux tester les graphes, les listes, et les méthodes de Condorcet en général.
