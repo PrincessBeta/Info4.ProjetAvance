@@ -46,10 +46,18 @@ Graphe * graphe_del_sommet(Graphe * g,Sommet s) {
     return g;
 }
 
-bool would_create_cycle(Graphe * g,Arete * a) {
-    bool verif = true;
-    for (int i = 0;i<list_size(g->listeAretes) && verif;i++)
-        verif = ((Arete *)list_at(g->listeAretes,i))->origine == a ->arrivee;
+
+bool rec_search(Graphe * g,Sommet s,Sommet cur) {
+    bool verif = s == cur;
+    printf("%s et %s \n",s,cur);
+    for (int i = 0;i<list_size(g->listeAretes) && !verif;i++) {
+        Arete * a = (Arete *)list_at(g->listeAretes,i);
+        if (a->origine == cur) verif = rec_search(g,s,a->arrivee);
+    }
     return verif;
+}
+
+bool would_create_cycle(Graphe * g,Arete * a) {
+    return !rec_search(g,a->arrivee,a->origine);
 }
 

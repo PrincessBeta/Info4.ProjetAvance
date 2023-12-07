@@ -2,6 +2,7 @@
 #define UTILS_H
 #define MAX_NAME_SIZE 100
 #include "lecture_csv.h"
+#include "liste.h"
 
 /// \brief returns a list of a person's votes
 /// \author Yael Bourguignon
@@ -54,5 +55,10 @@ void * print_arete(void * aret);
 /// \author Raphaël Rumin
 /// \date 06/12/2023
 char * delete_newline(char * s);
+
+/// \brief Renvoie une version triée de la liste passée en paramètre sans modifier celle ci.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+List * tri_liste_arete(List * l);
 
 #endif

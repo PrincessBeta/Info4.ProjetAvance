@@ -165,3 +165,23 @@ char * delete_newline(char * s) {
     if (s[len-1] == '\n') s[len-1] = '\0'; 
     return s;
 }
+
+
+List * inserer_liste_triee(List * l,Arete * a) {
+    bool verif = true;
+    for (int i = 0;i<list_size(l)&&verif;i++) {
+        Arete * arete = (Arete *) list_at(l,i);
+        if (arete->poid < a->poid) {
+            verif = false;
+            list_insert_at(l,i,a);
+        }
+    }
+    if (verif) list_push_back(l,a);
+    return l;
+}
+
+List * tri_liste_arete(List * l){
+    List * liste_triee = list_create();
+    for (int i = 0;i<list_size(l);i++) inserer_liste_triee(liste_triee,list_at(l,i));
+    return liste_triee;
+}

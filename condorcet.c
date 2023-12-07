@@ -32,7 +32,7 @@ Matrix * create_matrice_duel(Matrix * m) {
     return mat_duel;
 }
 
-int condorcet(Matrix * m) {
+Sommet condorcet(Matrix * m,char ** candidats) {
     int verif = 0;
     int i;
     for (i=0;i<m->rows&&!verif;i++) {
@@ -41,8 +41,8 @@ int condorcet(Matrix * m) {
             verif = (atoi(m->data[i][j]) >= atoi(m->data[j][i]));
         }
     }
-    if (verif) return i-1;          //i-1 car l'incrémentation a lieu avant le test dans un for, on le fait donc une fois de trop.
-    return -1;                
+    if (verif) return candidats[i-1];          //i-1 car l'incrémentation a lieu avant le test dans un for, on le fait donc une fois de trop.
+    return NULL;                
 }
 
 
@@ -53,7 +53,7 @@ int ind_minimum_ligne(char ** liste,int n) {
     return mini;
 }
 
-int condorcet_minimax(Matrix  * m) {
+Sommet condorcet_minimax(Matrix  * m,char ** candidats) {
     int maxi = 0;
     int col_max = ind_minimum_ligne(m->data[0],m->cols);
     int col;
@@ -64,7 +64,7 @@ int condorcet_minimax(Matrix  * m) {
             col_max = col;
         }
     }
-    return maxi;
+    return candidats[maxi];
 }
 
 Graphe * create_graphe_from_matrice(Matrix * m,char ** candidats) {
@@ -87,3 +87,23 @@ Graphe * create_graphe_from_matrice(Matrix * m,char ** candidats) {
     return g;
 }
 
+Sommet condorcet_paire_decroissante(Matrix * m,char ** candidats) {
+    Graphe * graphe_complet = create_graphe_from_matrice(m,candidats);
+    Graphe * graphe_reduit = graphe_create();
+    graphe_reduit->listeSommets = graphe_complet->listeSommets;
+    List * l = tri_liste_arete(graphe_complet->listeAretes);
+    for (int i = 0; i<list_size(l); i++) {
+        Arete * a = (Arete *) list_at(l,i);
+        if (!would_create_cycle(graphe_reduit,a)) graphe_add_arete(graphe_reduit,a);
+    }
+    
+    Sommet s = candidats[0];
+    for (int i = 0;i<list_size(graphe_reduit->listeSommets);i++) {
+        Arete * a = (Arete *) list_at(l,i);
+        if (a->arrivee == s) {
+            s = a->origine;
+            i = 0;
+        }
+    }
+    return s;
+}
