@@ -47,10 +47,21 @@ Graphe * graphe_del_arrete(Graphe * g,Arete * a);
 /// \date 02/12/2023
 Graphe * graphe_del_sommet(Graphe * g,Sommet s);
 
-/// \brief Vérifie si l'ajout de l'arête crée un cycle dans un graphe n'en contenant pas.
+
+/// \brief Recherche récursivement un sommet.
+/// \param g le graphe
+/// \param s le sommet recherché
+/// \param dep le point de départ de la recherche
+/// \author Raphaël Rumin
+/// \date 08/12/2023
+bool depth_search(Graphe * g,Sommet s,Sommet dep);
+
+/// \brief Vérifie si l'ajout de l'arête crée un cycle dans un graphe.
 /// \author Raphaël Rumin
 /// \date 05/12/2023
 bool would_create_cycle(Graphe * g,Arete * a);
+
+
 
 
 #endif

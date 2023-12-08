@@ -85,4 +85,9 @@ List *list_map(List *l, SimpleFunctor f);
 
 List *list_reduce(List *l, ReduceFunctor f, void* userData);
 
+/// \brief Vérifie si la liste l2 est contenue dans la liste l1.
+/// \author Raphaël Rumin
+/// \date 08/12/2023
+bool list_contain_list(List * l1,List * l2);
+
 #endif

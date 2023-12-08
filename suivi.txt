@@ -5,3 +5,5 @@ incluant la création d'une matrice de duel et le gagnant de Condorcet hors para
 05/12 : Développement et tests simples de la méthode Condorcet minimax et des méthodes
 de création des graphes pour les méthodes suivante.
 06/12 : création de fonctions pour mieux tester les graphes, les listes, et les méthodes de Condorcet en général.
+07/12 : Méthode des paires et fonctions nécessaires à cette méthode.
+08/12 : Optimisation des listes, amélioration de la recherche en profondeur et premières fonctions pour la méthode Schulze.

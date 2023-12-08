@@ -47,17 +47,25 @@ Graphe * graphe_del_sommet(Graphe * g,Sommet s) {
 }
 
 
-bool rec_search(Graphe * g,Sommet s,Sommet cur) {
+bool rec_search(Graphe * g,Sommet s,Sommet cur,List * parcouru) {
     bool verif = s == cur;
-    printf("%s et %s \n",s,cur);
+    verif = list_in(parcouru,cur);
+    list_push_back(parcouru,cur);
     for (int i = 0;i<list_size(g->listeAretes) && !verif;i++) {
         Arete * a = (Arete *)list_at(g->listeAretes,i);
-        if (a->origine == cur) verif = rec_search(g,s,a->arrivee);
+        if (a->origine == cur) verif = rec_search(g,s,a->arrivee,parcouru);
     }
     return verif;
 }
 
+bool depth_search(Graphe * g,Sommet s,Sommet dep) {
+    List * parcouru = list_create();
+    bool retour = rec_search(g,s,dep,parcouru);
+    list_delete(&parcouru);
+    return retour;
+}
+
 bool would_create_cycle(Graphe * g,Arete * a) {
-    return !rec_search(g,a->arrivee,a->origine);
+    return !depth_search(g,a->arrivee,a->origine);
 }
 

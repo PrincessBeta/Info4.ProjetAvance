@@ -107,3 +107,11 @@ Sommet condorcet_paire_decroissante(Matrix * m,char ** candidats) {
     }
     return s;
 }
+
+bool appartient_groupe_tete(Graphe * g,Sommet s,List * tete) {
+    bool verif = true;
+    for (int i = 0;i<list_size(tete) && verif;i++) {
+        verif = depth_search(g,(Sommet)list_at(tete,i),s);
+    }
+    return verif;
+}
