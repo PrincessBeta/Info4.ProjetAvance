@@ -173,6 +173,6 @@ bool list_contain_list(List * l1,List * l2) {
 
 List * list_add_list(List * l1, List * l2) {
 	for(Element *e = l2->sentinel->next; e != l2->sentinel; e =e->next)
-		if (!list_in(l1,e)) list_push_back(l1,e->value);
+		if (!list_in(l1,e->value) list_push_back(l1,e->value);
 	return l1;
 }
