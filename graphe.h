@@ -56,12 +56,23 @@ Graphe * graphe_del_sommet(Graphe * g,Sommet s);
 /// \date 08/12/2023
 bool depth_search(Graphe * g,Sommet s,Sommet dep);
 
+
 /// \brief Vérifie si l'ajout de l'arête crée un cycle dans un graphe.
 /// \author Raphaël Rumin
 /// \date 05/12/2023
 bool would_create_cycle(Graphe * g,Arete * a);
 
 
+/// \brief Retourne la liste des prédecesseurs d'un sommet.
+/// \author Raphaël Rumin
+/// \date 09/12/2023
+List * liste_predecesseur(Graphe * g,Sommet s);
+
+
+/// \brief Retourne la liste des successeurs d'un sommet.
+/// \author Raphaël Rumin
+/// \date 09/12/2023
+List * liste_successeur(Graphe * g,Sommet s);
 
 
 #endif

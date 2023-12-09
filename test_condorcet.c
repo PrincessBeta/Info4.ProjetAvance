@@ -65,7 +65,7 @@ int main() {
     Matrix * m = malloc(sizeof(Matrix));
     countRows(filename,m);
     countCols(filename,m);
-    createMatrix("csv/calcul2.csv",m);
+    createMatrix("csv/wiki_paires.csv",m);
     printMatrix(m);
     Matrix * m_trim = trim_matrix(m,1,0);
     printMatrix(m_trim);
@@ -85,6 +85,12 @@ int main() {
     printf("Versions triée : \n");
     list_map(tri_liste_arete(graphe->listeAretes),print_arete);
     printf("Le gagnant (paires) est : %s\n",condorcet_paire_decroissante(m_trim,m->data[0]));
+
+    List * gagnants = condorcet_schulze(m_trim,m->data[0]);
+
+    printf("Il y a %d gagnants : \n",gagnants->size);
+    list_map(gagnants,print_string);
+    printf("\n");
 
     return 0;
 }

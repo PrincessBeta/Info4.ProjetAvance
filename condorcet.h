@@ -27,5 +27,11 @@ Graphe * create_graphe_from_matrice(Matrix * m,char ** candidats);
 /// \date 06/12/2023
 Sommet condorcet_paire_decroissante(Matrix * m,char ** candidats);
 
+
+/// \brief Retourne le ou les gagnants par la méthode de Schulze, sous forme de Liste. La taille de la liste est le nombre de gagnant.
+/// \author Raphaël Rumin
+/// \date 09/12/2023
+List * condorcet_schulze(Matrix * m,char ** candidats);
+
 #endif
 

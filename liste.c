@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "liste.h"
+#include "utils.h"
 
 
 List *list_create() {
@@ -133,13 +134,14 @@ bool list_in(List *l,void * searched) {
 }
 
 List * list_del_elt(List * l,void * elt) {
-	for(Element *e = l->sentinel->next; e != l->sentinel; e = e->next)
-		if (e == elt) {
+	for(Element *e = l->sentinel->next; e != l->sentinel; e = e->next) {
+		if (e->value == elt) {
 			e->next->previous = e->previous;
 			e->previous->next = e->next;
 			l->size--;
-			free(e);
+			e = e->previous;
 		}
+	}
 	return l;
 }
 
@@ -164,7 +166,13 @@ List *list_reduce(List *l, ReduceFunctor f, void *userData) {
 bool list_contain_list(List * l1,List * l2) {
 	bool verif = true;
 	for(Element *e = l2->sentinel->next; e != l2->sentinel && verif; e =e->next) {
-		verif = list_in(l1,e);
+		verif = list_in(l1,e->value);
 	}
 	return verif;
+}
+
+List * list_add_list(List * l1, List * l2) {
+	for(Element *e = l2->sentinel->next; e != l2->sentinel; e =e->next)
+		if (!list_in(l1,e)) list_push_back(l1,e->value);
+	return l1;
 }

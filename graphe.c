@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "liste.h"
 #include "graphe.h"
+#include "utils.h"
 
 
 
@@ -40,8 +41,12 @@ Graphe * graphe_del_arrete(Graphe * g,Arete * a) {
 Graphe * graphe_del_sommet(Graphe * g,Sommet s) {
     for (int i = 0;i<list_size(g->listeAretes);i++) {
         Arete * a = list_at(g->listeAretes,i);
-        if (a->arrivee == s || a->origine == s) graphe_del_arrete(g,a);
+        if (a->arrivee == s || a->origine == s) {
+            graphe_del_arrete(g,a);
+            i--;
+        }
     }
+    
     list_del_elt(g->listeSommets,s);
     return g;
 }
@@ -69,3 +74,22 @@ bool would_create_cycle(Graphe * g,Arete * a) {
     return !depth_search(g,a->arrivee,a->origine);
 }
 
+List * liste_predecesseur(Graphe * g,Sommet s) {
+    List * l = list_create();
+    for (int i = 0;i<list_size(g->listeAretes);i++) {
+        Arete * a = (Arete *) list_at(g->listeAretes,i);
+        if (a->arrivee == s) 
+            if (!list_in(l,a->origine)) list_push_front(l,a->origine);
+    }
+    return l;
+}
+
+List * liste_successeur(Graphe * g,Sommet s) {
+        List * l = list_create();
+    for (int i = 0;i<list_size(g->listeAretes);i++) {
+        Arete * a = list_at(g->listeAretes,i);
+        if (a->origine == s) 
+            if (!list_in(l,a->arrivee)) list_push_front(l,a->arrivee);
+    }
+    return l;
+}

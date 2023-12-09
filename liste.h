@@ -90,4 +90,10 @@ List *list_reduce(List *l, ReduceFunctor f, void* userData);
 /// \date 08/12/2023
 bool list_contain_list(List * l1,List * l2);
 
+
+/// \brief Ajoute tous les éléments de l2 a l1, si ils ne sont pas déjà présent.
+/// \author Raphaël Rumin
+/// \date 09/12/2023
+List * list_add_list(List * l1, List * l2);
+
 #endif
