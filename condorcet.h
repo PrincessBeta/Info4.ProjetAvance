@@ -1,5 +1,5 @@
 #ifndef CONDORCET_H
-#define CONDORCET_h
+#define CONDORCET_H
 
 /// \brief Retourne une matrice de duel à partir d'une matrice de résultats de Condorcet.
 /// \author Raphaël Rumin
