@@ -10,6 +10,7 @@
 #include"lecture_csv.h"
 #include"condorcet.h"
 #include"utils.h"
+#include "condorcet_schulze.h"
 
 
 int main() {
