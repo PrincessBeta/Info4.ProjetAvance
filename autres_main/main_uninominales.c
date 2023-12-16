@@ -3,6 +3,7 @@
 #include <string.h>
 #include "lecture_csv.h"
 #include "vote_Uninominal.h"
+#include "utils.h"
 
 // main du CC3 càd votes uninominaux.
 

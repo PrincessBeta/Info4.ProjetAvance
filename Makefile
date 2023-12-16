@@ -28,12 +28,12 @@ $(EXEC): $(OBJ)
 %.o: %.c
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
-.PHONY: clean mrproper
+.PHONY: clean mrpropre
 
 clean:
 	@rm -rf *.o
 
-mrproper: clean
+mrpropre: clean
 	@rm -rf $(EXEC) documentation/html *.dot *.pdf
 
 

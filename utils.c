@@ -47,6 +47,65 @@ void getCode(char* num_etu, char* code,const char* voteType){
     
 }
 
+
+int **createVoteTable(Matrix *csvMatrix){
+    int **voteTable;
+
+    if (csvMatrix == NULL || csvMatrix->data == NULL){
+        fprintf(stderr, "Erreur : Matrice CSV invalide\n");
+        exit(1);
+    }
+    voteTable = (int **)malloc(csvMatrix->rows * sizeof(int *));
+
+    if (voteTable == NULL){
+        fprintf(stderr, "Erreur : Échec de l'allocation mémoire pour la matrice de votes\n");
+        exit(1);
+    }
+
+    int numCols = 10;
+    for (int i = 1; i < csvMatrix->rows; i++){
+        voteTable[i - 1] = (int *)malloc(numCols * sizeof(int));
+
+        if (voteTable[i - 1] == NULL){
+            fprintf(stderr, "Erreur : Échec de l'allocation mémoire pour la ligne %d de la matrice de votes\n", i);
+            exit(1);
+        }
+        for (int j = 4; j < csvMatrix->cols; j++){
+            voteTable[i - 1][j - 4] = atoi(csvMatrix->data[i][j]);
+        }
+    }
+    return voteTable;
+}
+
+void printTable(int **table, int numRows, int numCols, const char *rowLabel, const char *colLabel)
+{
+    printf("\t%s\t", colLabel);
+    for (int j = 0; j < numCols; j++)
+    {
+        printf("%d\t", j + 1);
+    }
+    printf("\n");
+
+    printf("\t");
+    for (int j = 0; j <= numCols; j++)
+    {
+        printf("--------");
+    }
+    printf("\n");
+
+    for (int i = 0; i < numRows; i++)
+    {
+        printf("%s %d |\t", rowLabel, i + 1);
+
+        for (int j = 0; j < numCols; j++)
+        {
+            printf("%d\t", table[i][j]);
+        }
+
+        printf("\n");
+    }
+}
+
 char* getUncrpytedKey(char* surname, char* name, char* num_etu,const char* voteType){
     int uncrypted_key_size = strlen(surname) + 1 + strlen(name) + strlen(num_etu)+1;
     char* uncrypted_key = malloc(sizeof(char)*uncrypted_key_size); 
