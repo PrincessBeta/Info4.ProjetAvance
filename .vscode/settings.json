@@ -8,7 +8,8 @@
         "stdio.h": "c",
         "sha256.h": "c",
         "lecture_csv.h": "c",
-        "sha256_utils.h": "c"
+        "sha256_utils.h": "c",
+        "condorcet_schulze.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

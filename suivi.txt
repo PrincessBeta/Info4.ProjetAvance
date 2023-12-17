@@ -1,1 +1,12 @@
-02/12 - Code du module graphe, utilisation de l'outil Live Share pour collaborer.
+02/12 : Développement des graphes.
+Découverte et utilisation de l'outils Live Share pour collaborer.
+03/12 et 04/12 : Développement des fonctions de traitement de matrice pour Condorcet,
+incluant la création d'une matrice de duel et le gagnant de Condorcet hors paradoxe.
+05/12 : Développement et tests simples de la méthode Condorcet minimax et des méthodes
+de création des graphes pour les méthodes suivante.
+06/12 : création de fonctions pour mieux tester les graphes, les listes, et les méthodes de Condorcet en général.
+07/12 : Méthode des paires et fonctions nécessaires à cette méthode.
+08/12 : Optimisation des listes, amélioration de la recherche en profondeur et premières fonctions pour la méthode Schulze.
+09/12 : Méthode de Schulze.
+13/12 : Séparation de Schulze dans un fichier à part.
+15/12 : Update de la doc.

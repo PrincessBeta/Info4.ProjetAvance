@@ -1,9 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 #define MAX_NAME_SIZE 100
-
 #include "lecture_csv.h"
-
+#include "liste.h"
 
 /// \brief returns a list of a person's votes
 /// \author Yael Bourguignon
@@ -25,5 +24,51 @@ int **createVoteTable(Matrix *csvMatrix);
 /// \author Yousra Arroui
 /// \date 10/10/2023
 void printTable(int **table, int numRows, int numCols, const char *rowLabel, const char *colLabel);
+
+
+/// \brief Convertit un int en string.
+/// \author Raphaël Rumin
+/// \date 04/12/2023
+char * itoa(int x);
+
+/// \brief Renvoie une matrice sans les l premières lignes et c premières colonnes de la matrice en paramètre.
+/// \author Raphaël Rumin
+/// \date 04/12/2023
+Matrix * trim_matrix(Matrix * m,int l,int c);
+
+/// \brief Renvoie une matrice de taille l*c remplie de 0.
+/// \author Raphaël Rumin
+/// \date 04/12/2023
+Matrix * init_matrice_zero(int l,int c);
+
+/// \brief Renvoie le tableau des candidats à partir d'un tableau sous la forme de la première ligne d'un vote moodle.
+/// \author Raphaël Rumin
+/// \date 05/12/2023
+char ** liste_candidat_moodle(char ** tab,int n);
+
+/// \brief Fonction à utiliser dans un map pour print une liste d'int.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+void * print_int(void * n);
+
+/// \brief Fonction à utiliser dans un map pour print une liste de chaine de caractères.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+void * print_string(void * s);
+
+/// \brief Fonction à utiliser dans un map pour print une liste d'aretes.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+void * print_arete(void * aret);
+
+/// \brief Fonction pour supprimer les '\n' en fin d'un string.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+char * delete_newline(char * s);
+
+/// \brief Renvoie une version triée de la liste passée en paramètre sans modifier celle ci.
+/// \author Raphaël Rumin
+/// \date 06/12/2023
+List * tri_liste_arete(List * l);
 
 #endif

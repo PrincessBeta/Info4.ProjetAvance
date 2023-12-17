@@ -5,6 +5,8 @@
 #include <ctype.h>
 #include "lecture_csv.h"
 #include "sha256_utils.h"
+#include "liste.h"
+#include "graphe.h"
 
 void uppercase(char* string){
     for (unsigned int i = 0; i < strlen(string); i++)
@@ -152,4 +154,93 @@ void getVotes(char* surname, char* name, char* num_etu,const char* voteType, cha
     }
     freeMatrix(&matrix);
     
+}
+
+char * itoa(int x){
+    int length = snprintf( NULL, 0, "%d", x );
+    char* str = malloc( length + 1 );
+    snprintf( str, length + 1, "%d", x );
+    return str;
+}
+
+Matrix * init_matrice_zero(int l,int c) {
+    Matrix * mat = malloc(sizeof(Matrix));
+    mat->rows = l;
+    mat->cols = c;
+    mat->data = malloc(l * sizeof(char **));
+    for (int i=0;i<l;i++)
+        mat->data[i] = malloc(sizeof(char*)*c);
+    
+    for (int i = 0; i<l ;i++)
+        for (int j =0; j<c; j++)
+            mat->data[i][j] = "0";
+
+    return mat;
+}
+
+
+Matrix * trim_matrix(Matrix * m,int lig,int col) {
+    Matrix * new_mat = malloc(sizeof(Matrix));
+    new_mat->data = malloc((m->rows-lig) * sizeof(char **));
+    for (int i=0;i<m->rows-lig;i++)
+        new_mat->data[i] = malloc(sizeof(char*)*(m->cols-col));
+    new_mat->rows = m->rows-lig;
+    new_mat->cols = m->cols-col;
+    for (int i = 0;i<m->rows-lig;i++) {
+        for (int j = 0;j<m->cols-col;j++) {
+            new_mat->data[i][j] = m->data[i+lig][j+col];
+        }
+    }
+    return new_mat;
+}
+
+char ** liste_candidat_moodle(char ** tab,int n) {
+    char ** new_tab = malloc((n-4)*sizeof(char*));
+    for (int i=0;i<n-4;i++) {
+        new_tab[i] = delete_newline(tab[i+4]);
+    }
+    return new_tab;
+}
+
+void * print_int(void * n) {
+    printf("%d",*(int*)n);
+    return n;
+}
+
+void * print_string(void * s) {
+    printf("%s",(char *)s);
+    return s;
+}
+
+
+void * print_arete(void * aret) {
+    Arete * a = (Arete *)aret;
+    printf("Arete de %s a %s de poids %d\n",a->origine,a->arrivee,a->poid);
+    return aret;
+}
+
+char * delete_newline(char * s) {
+    int len = strlen(s);
+    if (s[len-1] == '\n') s[len-1] = '\0'; 
+    return s;
+}
+
+
+List * inserer_liste_triee(List * l,Arete * a) {
+    bool verif = true;
+    for (int i = 0;i<list_size(l)&&verif;i++) {
+        Arete * arete = (Arete *) list_at(l,i);
+        if (arete->poid < a->poid) {
+            verif = false;
+            list_insert_at(l,i,a);
+        }
+    }
+    if (verif) list_push_back(l,a);
+    return l;
+}
+
+List * tri_liste_arete(List * l){
+    List * liste_triee = list_create();
+    for (int i = 0;i<list_size(l);i++) inserer_liste_triee(liste_triee,list_at(l,i));
+    return liste_triee;
 }

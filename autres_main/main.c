@@ -33,13 +33,6 @@ int main() {
 
     printf("Arete de %s a %s de poids %d\n",((Arete*)list_at(g->listeAretes,0))->origine,((Arete*)list_at(g->listeAretes,0))->arrivee,((Arete*)list_at(g->listeAretes,0))->poid);
 
-    graphe_del_sommet(g,c);
 
-    printf("nb sommet : %d\n",list_size(g->listeSommets));
-
-    graphe_del_sommet(g,a);
-
-    printf("nb sommet : %d\n",list_size(g->listeSommets));
-    printf("nb aretes : %d\n",list_size(g->listeAretes));
 
 }

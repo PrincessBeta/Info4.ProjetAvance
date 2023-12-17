@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "liste.h"
+#include "utils.h"
 
 
 List *list_create() {
@@ -125,16 +126,22 @@ int list_size(List *l) {
 	return l->size;
 }
 
-bool list_in(List *l,void * e) {
+bool list_in(List *l,void * searched) {
 	bool in = false;
-	for (int i = 0;i<list_size(l) && !in;i++)
-		in = list_at(l,i) == e;
+	for(Element *e = l->sentinel->next; e != l->sentinel && !in ; e = e->next)
+		in = e->value == searched;
 	return in;
 }
 
-List * list_del_elt(List * l,void * e) {
-	for (int i = 0;i<list_size(l);i++)
-		if (list_at(l,i) == e) list_remove_at(l,i);
+List * list_del_elt(List * l,void * elt) {
+	for(Element *e = l->sentinel->next; e != l->sentinel; e = e->next) {
+		if (e->value == elt) {
+			e->next->previous = e->previous;
+			e->previous->next = e->next;
+			l->size--;
+			e = e->previous;
+		}
+	}
 	return l;
 }
 
@@ -156,4 +163,16 @@ List *list_reduce(List *l, ReduceFunctor f, void *userData) {
 }
 
 
+bool list_contain_list(List * l1,List * l2) {
+	bool verif = true;
+	for(Element *e = l2->sentinel->next; e != l2->sentinel && verif; e =e->next) {
+		verif = list_in(l1,e->value);
+	}
+	return verif;
+}
 
+List * list_add_list(List * l1, List * l2) {
+	for(Element *e = l2->sentinel->next; e != l2->sentinel; e =e->next)
+		if (!list_in(l1,e->value)) list_push_back(l1,e->value);
+	return l1;
+}
