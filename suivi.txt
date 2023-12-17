@@ -7,3 +7,6 @@ de création des graphes pour les méthodes suivante.
 06/12 : création de fonctions pour mieux tester les graphes, les listes, et les méthodes de Condorcet en général.
 07/12 : Méthode des paires et fonctions nécessaires à cette méthode.
 08/12 : Optimisation des listes, amélioration de la recherche en profondeur et premières fonctions pour la méthode Schulze.
+09/12 : Méthode de Schulze.
+13/12 : Séparation de Schulze dans un fichier à part.
+15/12 : Update de la doc.
