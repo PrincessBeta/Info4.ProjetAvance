@@ -104,6 +104,6 @@ Sommet condorcet_paire_decroissante(Matrix * m,char ** candidats) {
             s = a->origine;
             i = 0;
         }
-    }
+    };
     return s;
 }

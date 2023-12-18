@@ -11,7 +11,9 @@
         "sha256_utils.h": "c",
         "condorcet_schulze.h": "c",
         "stat.h": "c",
-        "string_view": "c"
+        "string_view": "c",
+        "array": "c",
+        "string": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

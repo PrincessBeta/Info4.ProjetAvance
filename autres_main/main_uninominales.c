@@ -40,8 +40,7 @@ int main(int argc, char **argv)
 
     int* tab_score;
     int tab_gagnant[numCols];
-    for (int i = 0; i < numCols; i++)
-    {
+    for (int i = 0; i < numCols; i++){
         tab_gagnant[i] = 0;
     }
 
@@ -49,8 +48,8 @@ int main(int argc, char **argv)
         case 1:
             printf("\nMéthode de vote : Uninominal à un tour\n");
             tab_score = createTableauScoreT1(voteTable, numCols, numRows);
-            printTableauScore(tab_score, numCols);
             findWinnersUni1(tab_score, numCols, tab_gagnant);
+            printTableauScore(tab_score, numCols);
             printf("\nLe(s) burger(s) gagnant(s) :\n");
             for(int i = 0; i < numCols; i++){
                 if(tab_gagnant[i] != 0){

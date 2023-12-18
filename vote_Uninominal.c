@@ -24,15 +24,17 @@ int *createTableauScoreT1(int **voteTable, int numCols, int numRows)
         exit(1);
     }
     for(int j = 0; j < numRows; j++){
-        int min = voteTable[0][0];
+        int min = voteTable[j][0];
         for(int i = 1; i < numCols; i++){
             if (voteTable[j][i] < min && voteTable[j][i] != -1){
                 min = voteTable[j][i];
             }
         }
-        for(int i = 0; i < numCols; i++){
+        int flag = 0;
+        for(int i = 0; i < numCols && !flag; i++){
             if (voteTable[j][i] == min){
                 scoreMatrix[i]++;
+                flag = 1;
             }
         }
     }
