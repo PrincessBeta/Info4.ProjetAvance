@@ -7,9 +7,6 @@
  * @brief Programme principal pour le vote uninominal à deux tours
  * @author Yousra Arroui
  */
-void printTable(int **table, int numRows, int numCols, const char *rowLabel, const char *colLabel);
-
-int **createVoteTable(Matrix *csvMatrix);
 
 int *createTableauScoreT1(int **voteTable, int numCols, int numRows);
 

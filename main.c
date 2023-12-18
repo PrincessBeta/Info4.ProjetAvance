@@ -49,8 +49,8 @@ int main(int argc, char *argv[]) {
     int opt;
     char *inputFile = NULL;
     char *outputFile = NULL;
-    int methode = NULL;
-    int useDuelMat-1= 0;  /
+    int methode = -1;
+    int useDuelMat= 0;  
 
     while ((opt = getopt(argc, argv, "i:d:o:m:")) != -1) {
         switch (opt) {
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
                     return 0;
                 }
                 inputFile = optarg;
-                useDuelMatrix = 1;
+                useDuelMat = 1;
                 break;
             case 'o':
                 outputFile = optarg;
@@ -97,14 +97,14 @@ int main(int argc, char *argv[]) {
     int numCols = csvMatrix.cols;
     int numRows = csvMatrix.rows-1;
     
-    if (useDuelMatrix) {
+    if (useDuelMat) {
         Matrix duelMatrix;
         duelMatrix = create_matrice_duel(&csvMatrix);
     }
 
     char** candi = (csvMatrix->data)[0];
-
-    if ((methode == UNINOMINAL_1 || methode == TOUTES_METHODES) && !useDuelMatrix) {
+/*
+    if ((methode == UNINOMINAL_1 || methode == TOUTES_METHODES) && !useDuelMat) {
         int* tab_score;
         int tab_gagnant[numCols];
         for (int i = 0; i < numCols; i++){
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    if ((methode == UNINOMINAL_2 || methode == TOUTES_METHODES) && !useDuelMatrix) {
+    if ((methode == UNINOMINAL_2 || methode == TOUTES_METHODES) && !useDuelMat) {
         int* tab_score;
         int tab_gagnant[numCols];
         for (int i = 0; i < numCols; i++){
@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {
                 numCols,numRows,candi[winner],tab_score[winner]);
 
         
-    } /*
+    } */
     if (methode == CONDORCET_MINIMAX || methode == TOUTES_METHODES) {
         Matrix * m_trim = trim_matrix(csvMatrix,1,0);
         printf("Mode de scrutin : Condorcet minimax, %d candidats, %d votants, vainqueur = %s\n",numCols, numRows, condorcet_minimax(m_trim, candi));
@@ -167,6 +167,6 @@ int main(int argc, char *argv[]) {
     if (methode == JUGEMENT_MAJORITAIRE || methode == TOUTES_METHODES) {
         printf("Mode de scrutin : Jugement majoritaire, %d candidats, %d votants, vainquer = %s\n", numCols, numRows, jugementMaj(tableVote, numCols, numRows, candi));
     }
-*/
+
     return 0;
 }

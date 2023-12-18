@@ -13,13 +13,18 @@ int* getVoteCandidat(int **table, int numCand, int nbElector){
     return listCand;
 }
 
-//0-> tres bien; 5-> a rejeter
-float* statCandidatJugMaj(int* listCand, int nbElector){
-    float* stat = malloc(sizeof(float)*MENTIONS);
-    for (int i=0; i<MENTIONS; i++){
-        stat[i] = 0;
+int nbMaxLst(int** listCand, int nbElector, int nbCand){
+    int rslt=6;
+    for (int i=0; i<nbElector; i++){
+        for (int j=0; i<nbCand; i++){
+            if (listCand[i][j]>rslt)
+                rslt = listCand[i][j];
+        }
     }
-    
+    return rslt;
+}
+
+float* count6(int* listCand,  int nbElector, float* stat){
     for (int i=0; i<nbElector; i++){
         switch(listCand[i]){
             case -1: 
@@ -44,6 +49,63 @@ float* statCandidatJugMaj(int* listCand, int nbElector){
                 stat[0] +=1;
                 break;
         }
+    }
+    return stat;
+}
+float* count10(int* listCand,  int nbElector, float* stat){
+    for (int i=0; i<nbElector; i++){
+        switch(listCand[i]){
+            case -1: 
+                stat[5] +=1;
+                break;
+            case 10: 
+                stat[5] +=1;
+                break;
+            case 9: 
+                stat[4] +=1;
+                break;
+            case 8: 
+                stat[4] +=1;
+                break;
+            case 7: 
+                stat[3] +=1;
+                break;
+            case 6: 
+                stat[3] +=1;
+                break;
+            case 5: 
+                stat[2] +=1;
+                break;
+            case 4: 
+                stat[2] +=1;
+                break;
+            case 3:    
+                stat[1] +=1;
+                break;
+            case 2:    
+                stat[1] +=1;
+                break;
+            case 1: 
+                stat[0] +=1;
+                break;
+        }
+    }
+    return stat;
+}
+
+float* statCandidatJugMaj(int* listCand, int nbElector, int typeCount){
+    float* stat = malloc(sizeof(float)*MENTIONS);
+    for (int i=0; i<MENTIONS; i++){
+        stat[i] = 0;
+    }
+
+    if (typeCount==6)
+        stat = count6(listCand, nbElector, stat);
+    else if(typeCount == 10)
+        stat = count10(listCand, nbElector, stat);
+    else {
+        fprintf(stderr, "csv incompatible avec jugement maj\n");
+        exit(0);
     }
 
     for (int i=0; i<MENTIONS; i++){
@@ -158,12 +220,13 @@ int mtdGrpInsatisfait(float** listStatCand, int* listMedCand, int nbCand){
     return winner;
 }
 
-int jugementMaj(int **table, int nbCol, int nbRow, char ** candidats){
+char* jugementMaj(int **table, int nbCol, int nbRow, char ** candidats){
     float **listStatCand = (float**)malloc(sizeof(float)*nbRow);
     int *listMedCand = malloc(sizeof(int*)*nbRow);
 
+    int typeCount = nbMaxLst(table, nbRow, nbCol);
     for (int i =0; i<nbCol; i++){
-        listStatCand[i] = statCandidatJugMaj(getVoteCandidat(table,i,nbRow), nbRow);
+        listStatCand[i] = statCandidatJugMaj(getVoteCandidat(table,i,nbRow), nbRow, typeCount);
         listMedCand[i] = medStatMaj(listStatCand[i]);
     }
     return candidats[mtdGrpInsatisfait(listStatCand, listMedCand, nbCol)];
