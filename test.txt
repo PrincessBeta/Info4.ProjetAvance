@@ -1,57 +1,106 @@
+Votes : 
+	Burgers	 1	 2	 3	 4	 5	 6	 7	 8	 9	10	
+	----------------------------------------------------------------------------------------
+Voteurs  1 |	 1	 1	 2	10	 3	 3	 4	 4	10	 9	
+Voteurs  2 |	 1	 3	10	 9	-1	 5	 6	 4	 8	 2	
+Voteurs  3 |	 1	 2	 3	10	 8	 7	 7	 5	 3	 3	
+Voteurs  4 |	 9	 4	 2	 5	 3	10	 1	 6	 8	 7	
+Voteurs  5 |	10	 9	 8	 7	 6	 5	 4	 3	 2	 1	
+Voteurs  6 |	 3	 2	 6	 8	 5	 9	 1	 4	10	 7	
+Voteurs  7 |	 1	 2	 3	 4	 5	 6	 7	 8	 9	10	
+Voteurs  8 |	 8	 9	 4	 9	 5	 9	 8	 8	 7	 5	
+Voteurs  9 |	 8	 4	 9	 6	 7	 5	10	10	 6	 7	
+Voteurs 10 |	 2	 3	 1	 8	 8	 6	 7	 5	-1	 4	
+Voteurs 11 |	 4	 5	 6	 3	 7	 2	 8	 1	 9	10	
+Voteurs 12 |	10	 3	 2	 8	 4	 9	 1	 5	 6	 7	
+Voteurs 13 |	 1	 7	 6	10	 5	 9	 8	 4	 2	 3	
+Voteurs 14 |	 4	 2	 8	10	 6	 1	 9	 4	 7	 1	
+Voteurs 15 |	 8	 2	 3	10	 4	 9	 5	 6	 7	 1	
+Voteurs 16 |	 1	 2	10	 9	 3	 5	 6	 4	 7	 8	
+Voteurs 17 |	 2	 7	 5	10	 6	 4	 3	 8	 9	 1	
+Voteurs 18 |	 7	 8	 5	 9	 4	 3	 1	 2	10	 6	
+Voteurs 19 |	10	 1	 5	 8	 7	 2	 6	 9	 3	 4	
+Voteurs 20 |	 3	10	 9	 2	 7	 8	 6	 1	 5	 4	
+Voteurs 21 |	 5	 2	 6	10	 1	 9	 8	 3	 4	 7	
+Voteurs 22 |	 4	 3	10	 9	 8	 7	 2	 1	 6	 5	
+Voteurs 23 |	 8	 7	 3	 1	 7	 8	10	 9	 1	-1	
+Voteurs 24 |	10	 9	 4	 7	 5	 1	 2	 6	 8	 3	
+Voteurs 25 |	 5	 1	 9	10	 6	 7	 3	 4	 8	 2	
+Voteurs 26 |	10	 1	 8	 4	 9	 7	 2	 3	 6	 5	
+Voteurs 27 |	 8	 9	10	 7	 4	 6	 2	 1	 5	 3	
+Voteurs 28 |	 1	 8	 9	 3	 5	 2	 6	 4	-1	 7	
+Voteurs 29 |	 3	 4	 5	10	 2	 9	 6	 7	 1	 8	
+Voteurs 30 |	 1	 3	 1	 2	 9	 5	 8	 1	 9	-1	
+Voteurs 31 |	 2	 3	 8	 9	 1	 7	 5	 4	10	 6	
+Voteurs 32 |	 8	 9	 9	 7	 8	 5	10	 9	 6	 5	
+Voteurs 33 |	 1	 2	 3	 7	 5	10	 4	 6	 5	 8	
+Voteurs 34 |	 5	 7	 9	 8	 6	 1	 3	 2	10	 4	
+Voteurs 35 |	 1	 6	 2	 3	 8	10	 9	 7	 5	 4	
+Voteurs 36 |	 9	 7	 3	 4	 5	 6	 1	 2	 8	10	
+Voteurs 37 |	 3	10	 2	 8	 6	 5	 1	 4	-1	 7	
+Voteurs 38 |	 9	10	 6	 7	 3	 4	 1	 2	 8	 5	
+Voteurs 39 |	 1	 5	 7	 3	 6	 8	 4	10	 9	 2	
+
 Scores : 
 	Burger	Score
 	------- --------
-	1	16
-	2	24
-	3	14
-	4	14
-	5	11
-	6	9
-	7	12
+	1	11
+	2	4
+	3	2
+	4	1
+	5	2
+	6	4
+	7	7
+	8	4
+	9	1
+	10	3
 
-Mode de scrutin : Uninomial a un tour, 7 candidats, 100 votants, vainqueur =  Obélix, score = 24.0%
+Mode de scrutin : Uninomial a un tour, 10 candidats, 39 votants, vainqueur = Q00_Vote->1 - Burger Black Pepper, score = 28.2%
 Scores 1er Tour : 
 	Burger	Score
 	------- --------
-	1	16
-	2	24
-	3	14
-	4	14
-	5	11
-	6	9
-	7	12
+	1	11
+	2	4
+	3	2
+	4	1
+	5	2
+	6	4
+	7	7
+	8	4
+	9	1
+	10	3
 
-Mode de scrutin : Uninomial a deux tour, tour 1, 7 candidats, 100 votants, vainqueur =  Astérix, score = 16.0%
-Mode de scrutin : Uninomial a deux tour, tour 1, 7 candidats, 100 votants, vainqueur =  Obélix, score = 24.0%
+Mode de scrutin : Uninomial a deux tour, tour 1, 10 candidats, 39 votants, vainqueur = Q00_Vote->1 - Burger Black Pepper, score = 28.2%
+Mode de scrutin : Uninomial a deux tour, tour 1, 10 candidats, 39 votants, vainqueur = Q00_Vote->7 - Crispy, score = 17.9%
 Scores 2nd Tour : 
 	Burger	Score
 	------- --------
-	1	48
-	2	42
+	1	16
+	2	0
 	3	0
 	4	0
 	5	0
 	6	0
-	7	0
+	7	22
+	8	0
+	9	0
+	10	0
 
-Mode de scrutin : Uninomial a deux tour, tour 2, 7 candidats, 100 votants, vainqueur =  Astérix, score = 48.0%
-Mode de scrutin : Jugement majoritaire, 7 candidats, 100 votants, vainquer =  Abraracourcix
+Mode de scrutin : Uninomial a deux tour, tour 2, 10 candidats, 39 votants, vainqueur = Q00_Vote->7 - Crispy, score = 56.4%
+Mode de scrutin : Jugement majoritaire, 10 candidats, 39 votants, vainquer = Q00_Vote->1 - Burger Black Pepper
 Matrice Duels :
-0	42	42	44	39	42	38	
-48	0	43	42	40	45	42	
-41	46	0	48	41	41	42	
-43	39	44	0	36	39	38	
-50	46	45	44	0	54	38	
-43	44	44	43	37	0	35	
-51	48	48	48	43	50	0	
+0	23	24	25	21	24	22	19	23	20	
+15	0	22	24	20	24	22	23	28	19	
+14	16	0	25	20	19	18	18	22	15	
+14	14	14	0	13	12	10	9	18	10	
+17	18	19	25	0	20	16	18	24	16	
+14	14	20	26	18	0	15	12	23	13	
+16	17	21	29	23	23	0	17	26	20	
+17	15	19	30	21	27	19	0	27	21	
+16	11	16	18	13	16	13	12	0	11	
+19	20	23	29	21	24	19	18	27	0	
 
-Mode de scrutin : Condorcet minimax, 7 candidats, 100 votants, vainqueur =  Idéfix
+Mode de scrutin : Condorcet minimax, 10 candidats, 39 votants, vainqueur = Q00_Vote->10 - Country
 
-Mode de scrutin : Condorcet paire, 7 candidats, 100 votants, vainqueur =  Idéfix
-
-Mode de scrutin : Condorcet schulze, 7 candidats, 100 votants, vainqueur =  Idéfix
- 
-ax, 10 candidats, 25 votants, vainqueur = Q01->8 - Cheese Burger
-Mode de scrutin : Condorcet paire, 10 candidats, 25 votants, vainqueur = Q01->1 - Burger Black Pepper
-Mode de scrutin : Condorcet schulze, 10 candidats, 25 votants, vainqueur = Q01->8 - Cheese Burger 
-ze, 10 candidats, 39 votants, vainqueur = Q00_Vote->1 - Burger Black Pepper 
+Mode de scrutin : Condorcet paire, 10 candidats, 39 votants, vainqueur = Q00_Vote->1 - Burger Black Pepper
+Mode de scrutin : Condorcet schulze, 10 candidats, 39 votants, vainqueur = Q00_Vote->1 - Burger Black Pepper 

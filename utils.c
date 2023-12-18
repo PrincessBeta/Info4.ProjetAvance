@@ -84,7 +84,7 @@ void printTable(int **table, int numRows, int numCols, const char *rowLabel, con
     printf("\t%s\t", colLabel);
     for (int j = 0; j < numCols; j++)
     {
-        printf("%d\t", j + 1);
+        printf("%2d\t", j + 1);
     }
     printf("\n");
 
@@ -97,15 +97,16 @@ void printTable(int **table, int numRows, int numCols, const char *rowLabel, con
 
     for (int i = 0; i < numRows; i++)
     {
-        printf("%s %d |\t", rowLabel, i + 1);
+        printf("%s %2d |\t", rowLabel, i + 1);
 
         for (int j = 0; j < numCols; j++)
         {
-            printf("%d\t", table[i][j]);
+            printf("%2d\t", table[i][j]);
         }
 
         printf("\n");
     }
+    printf("\n");
 }
 
 char* getUncrpytedKey(char* surname, char* name, char* num_etu,const char* voteType){

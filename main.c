@@ -108,6 +108,11 @@ int main(int argc, char *argv[]) {
     
     int numCols = csvMatrix->cols-4;
     int numRows = (csvMatrix->rows)-1;
+    if(debug){
+        printf("Votes : \n");
+        printTable(tableVote,numRows,numCols,"Voteurs","Burgers");
+
+    }
     char* noms_candidats[numCols];
     for (int i = 0; i < numCols; i++)
     {
