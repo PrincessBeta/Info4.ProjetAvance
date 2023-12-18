@@ -52,7 +52,7 @@ int main(int argc, char *argv[]) {
     char *inputFile = NULL;
     int methode = -1;
     int useDuelMat= false;  
-    bool debug = true;
+    bool debug = false;
 
     while ((opt = getopt(argc, argv, "i:d:o:m:")) != -1) {
         switch (opt) {

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "lecture_csv.h"
 /**
  * @file vote_Uninominal.c
@@ -30,13 +31,11 @@ int *createTableauScoreT1(int **voteTable, int numCols, int numRows)
                 min = voteTable[j][i];
             }
         }
-        int nbVotes = 0;
-        for(int i = 0; i < numCols; i++){
-            if (voteTable[j][i] == min && nbVotes == 0){
+        bool aVote = false;
+        for(int i = 0; i < numCols && !aVote; i++){
+            if (voteTable[j][i] == min){
                 scoreMatrix[i]++;
-                nbVotes++;
-            } else if (nbVotes == 1){
-                scoreMatrix[i]--; // si une personne vote pour deux burgers, le vote est caduc
+                aVote = true; // si une personne vote pour deux burgers, le vote est caduc
             }
         }
     }
