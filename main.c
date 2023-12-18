@@ -10,40 +10,48 @@
 #include "utils.h"
 #include "liste.h"
 
+#define UNINOMINAL_1 0
+#define UNINOMINAL_2 1
+#define CONDORCET_MINIMAX 2
+#define CONDORCET_PAIRES 3
+#define CONDORCET_SCHULZE 4
+#define JUGEMENT_MAJORITAIRE 5
+#define TOUTES_METHODES 6
+
+
+
 int isMethode(char* mtd){
     if(strcmp(mtd, "uni1")==0){
-        return 0;
+        return UNINOMINAL_1;
     }
     if(strcmp(mtd, "uni2")==0){
-        return 1;
+        return UNINOMINAL_2;
     }
     if(strcmp(mtd, "cm")==0){
-        return 2;
+        return CONDORCET_MINIMAX;
     }
     if(strcmp(mtd, "cp")==0){
-        return 3;
+        return CONDORCET_PAIRES;
     }
     if(strcmp(mtd, "cs")==0){
-        return 4;
+        return CONDORCET_SCHULZE;
     }
     if(strcmp(mtd, "jm")==0){
-        return 5;
+        return JUGEMENT_MAJORITAIRE;
     }
     if(strcmp(mtd, "all")==0){
-        return 6;
+        return TOUTES_METHODES;
     }
     return -1;
 }
 
 int main(int argc, char *argv[]) {
-    // Variables for command-line options
     int opt;
     char *inputFile = NULL;
     char *outputFile = NULL;
     int methode = NULL;
-    int useDuelMatrix = 0;  // Flag for -d option
+    int useDuelMat-1= 0;  /
 
-    // Process command-line options
     while ((opt = getopt(argc, argv, "i:d:o:m:")) != -1) {
         switch (opt) {
             case 'i':
@@ -83,8 +91,6 @@ int main(int argc, char *argv[]) {
     }
 
     Matrix csvMatrix;
-    countRows(inputFile, &csvMatrix);
-    countCols(inputFile, &csvMatrix);
     createMatrix(inputFile, &csvMatrix);
 
     int** tableVote = createVoteTable(csvMatrix);
@@ -96,7 +102,9 @@ int main(int argc, char *argv[]) {
         duelMatrix = create_matrice_duel(&csvMatrix);
     }
 
-    if ((methode == 0 || methode == 6) && !useDuelMatrix) {
+    char** candi = (csvMatrix->data)[0];
+
+    if ((methode == UNINOMINAL_1 || methode == TOUTES_METHODES) && !useDuelMatrix) {
         int* tab_score;
         int tab_gagnant[numCols];
         for (int i = 0; i < numCols; i++){
@@ -105,9 +113,8 @@ int main(int argc, char *argv[]) {
         tab_score = createTableauScoreT1(tableVote, numCols, numRows);
         findWinnersUni1(tab_score, numCols, tab_gagnant);
 
-        printf("Mode de scrutin : uninomial a un tour, %d candidats, 
-        %d votants, vainqueur = %s, score: %f/100", );                              
-                                        //retravailler uni pour avoir les pourcentages
+        printf("Mode de scrutin : Uninomial a un tour, %d candidats, %d votants, vainqueur = %s, score = %f/100",
+                numCols,numRows,candi[tab_gagnant[0]],tab_score[tab_gagnant[0]]);
 
         printf("\nLe(s) burger(s) gagnant(s) :\n");
         for(int i = 0; i < numCols; i++){
@@ -116,21 +123,50 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-    if ((methode == 1 || methode == 6) && !useDuelMatrix) {
-        
-    } 
-    if (methode == 2 || methode == 6) {
 
-    }
-    if (methode == 3 || methode == 6) {
-    
-    }
-    if (methode == 4 || methode == 6) {
-       
-    } 
-    if (methode == 5 || methode == 6) {
-        
-    }
+    if ((methode == UNINOMINAL_2 || methode == TOUTES_METHODES) && !useDuelMatrix) {
+        int* tab_score;
+        int tab_gagnant[numCols];
+        for (int i = 0; i < numCols; i++){
+            tab_gagnant[i] = 0;
+        }
 
+        tab_score = createTableauScoreT1(tableVote, numCols, numRows);
+        findWinnersUni2Tour1(tab_score, numCols, tab_gagnant);
+
+        for (int i=0; i<tab_gagnant.length; i++);
+        
+        printf("Mode de scrutin : Uninomial a deux tour, tour 1, %d candidats, %d votants, vainqueur = %s, score = %f/100",
+                numCols,numRows,candi[tab_gagnant[0]],tab_score[tab_gagnant[0]]);
+
+        printf("Mode de scrutin : Uninomial a deux tour, tour 1, %d candidats, %d votants, vainqueur = %s, score = %f/100",
+                numCols,numRows,candi[tab_gagnant[1]],tab_score[tab_gagnant[1]]);
+
+
+        
+        tab_score = createTableauScoreT2(tableVote, numCols, numRows, tab_gagnant);
+        int winner = findWinnersUni2Tour2(tab_score, tab_gagnant);
+
+        printf("Mode de scrutin : Uninomial a deux tour, tour 2, %d candidats, %d votants, vainqueur = %s, score = %f/100",
+                numCols,numRows,candi[winner],tab_score[winner]);
+
+        
+    } /*
+    if (methode == CONDORCET_MINIMAX || methode == TOUTES_METHODES) {
+        Matrix * m_trim = trim_matrix(csvMatrix,1,0);
+        printf("Mode de scrutin : Condorcet minimax, %d candidats, %d votants, vainqueur = %s\n",numCols, numRows, condorcet_minimax(m_trim, candi));
+    }
+    if (methode == CONDORCET_PAIRES || methode == TOUTES_METHODES) {
+        Matrix * m_trim = trim_matrix(csvMatrix,1,0);
+        printf("Mode de scrutin : Condorcet paire, %d candidats, %d votants, vainqueur = %s\n",numCols, numRows, condorcet_paire_decroissante(m_trim, candi));
+    }
+    if (methode == CONDORCET_SCHULZE || methode == TOUTES_METHODES) {
+        Matrix * m_trim = trim_matrix(csvMatrix,1,0);
+        printf("Mode de scrutin : Condorcet schulze, %d candidats, %d votants, vainqueur = %s\n",numCols, numRows, condorcet_schulze(m_trim, candi));
+    } 
+    if (methode == JUGEMENT_MAJORITAIRE || methode == TOUTES_METHODES) {
+        printf("Mode de scrutin : Jugement majoritaire, %d candidats, %d votants, vainquer = %s\n", numCols, numRows, jugementMaj(tableVote, numCols, numRows, candi));
+    }
+*/
     return 0;
 }

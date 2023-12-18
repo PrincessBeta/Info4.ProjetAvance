@@ -10,8 +10,14 @@
 
 int *createTableauScoreT1(int **voteTable, int numCols, int numRows)
 {
-    int *scoreMatrix;
-    scoreMatrix = (int *)malloc(numCols * sizeof(int));
+    int *scoreMatrix = malloc(numCols * sizeof(int));
+
+    for (int i = 0; i < numCols; i++)
+    {
+        scoreMatrix[i] = 0;
+    }
+    
+
     if (scoreMatrix == NULL)
     {
         fprintf(stderr, "Erreur : Échec de l'allocation mémoire pour la matrice de scores\n");
@@ -37,6 +43,12 @@ int *createTableauScoreT2(int **voteTable, int numCols, int numRows, int *tab_ga
 {
     int *scoreMatrix;
     scoreMatrix = (int *)malloc(numCols * sizeof(int));
+
+    for (int i = 0; i < numCols; i++)
+    {
+        scoreMatrix[i] = 0;
+    }
+
     if (scoreMatrix == NULL)
     {
         fprintf(stderr, "Erreur : Échec de l'allocation mémoire pour la matrice de scores\n");

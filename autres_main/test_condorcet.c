@@ -42,54 +42,50 @@ int main() {
     const char *filename = "csv/VoteJugement.csv";
     Matrix * matrice = malloc(sizeof(Matrix));
 
-    countRows(filename,matrice);
-    countCols(filename,matrice);
-
     createMatrix(filename, matrice);
 
-    printMatrix(matrice);
+    // printMatrix(matrice);
 
     Matrix * mat_trim = trim_matrix(matrice,1,4);
-    printMatrix(mat_trim);
+    // printMatrix(mat_trim);
 
 
-    Matrix * zeros = init_matrice_zero(4,4);
-    printMatrix(zeros);
+    // Matrix * zeros = init_matrice_zero(4,4);
+    // printMatrix(zeros);
 
     Matrix * mat_duel = create_matrice_duel(mat_trim);
-    printMatrix(mat_duel);
+    // printMatrix(mat_duel);
 
     char ** candi = liste_candidat_moodle(matrice->data[0],matrice->cols);
 
     printf("LE GAGNANT EST : %s\n",condorcet(mat_duel,candi));
 
     Matrix * m = malloc(sizeof(Matrix));
-    countRows(filename,m);
-    countCols(filename,m);
+
     createMatrix("csv/wiki_paires.csv",m);
-    printMatrix(m);
+    // printMatrix(m);
     Matrix * m_trim = trim_matrix(m,1,0);
-    printMatrix(m_trim);
+    // printMatrix(m_trim);
     char ** candidats = (m->data)[0];
     printf("Le gagnant est : %s\n",condorcet(m_trim,candidats));
     printf("Le gagnant (minimax) est : %s\n",condorcet_minimax(m_trim,candidats));
 
     
-    for (int i = 0;i<m->cols;i++) candidats[i] = delete_newline(candidats[i]);
-    Graphe * graphe = create_graphe_from_matrice(m_trim,candidats);
+    // for (int i = 0;i<m->cols;i++) candidats[i] = delete_newline(candidats[i]);
+    // Graphe * graphe = create_graphe_from_matrice(m_trim,candidats);
 
-    printf("nb aretes = %d et nb sommets = %d\n",list_size(graphe->listeAretes),list_size(graphe->listeSommets));
+    // printf("nb aretes = %d et nb sommets = %d\n",list_size(graphe->listeAretes),list_size(graphe->listeSommets));
 
-    list_map(graphe->listeSommets,print_string);
-    printf("\n");
-    list_map(graphe->listeAretes,print_arete);
-    printf("Versions triée : \n");
-    list_map(tri_liste_arete(graphe->listeAretes),print_arete);
+    // list_map(graphe->listeSommets,print_string);
+    // printf("\n");
+    // list_map(graphe->listeAretes,print_arete);
+    // printf("Versions triée : \n");
+    // list_map(tri_liste_arete(graphe->listeAretes),print_arete);
     printf("Le gagnant (paires) est : %s\n",condorcet_paire_decroissante(m_trim,m->data[0]));
 
     List * gagnants = condorcet_schulze(m_trim,m->data[0]);
 
-    printf("Il y a %d gagnants : \n",gagnants->size);
+    printf("Il y a %d gagnants (schulze) : \n",gagnants->size);
     list_map(gagnants,print_string);
     printf("\n");
 

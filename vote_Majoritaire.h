@@ -8,7 +8,7 @@
 */
 
 /// \brief return l'indice du vainqueur en utilisant la methode jugement majoritaire
-int jugementMaj(int **table, int nbCol, int nbRow);
+char* jugementMaj(int **table, int nbCol, int nbRow, char ** candidats);
 
 
 

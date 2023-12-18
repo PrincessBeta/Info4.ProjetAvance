@@ -158,7 +158,7 @@ int mtdGrpInsatisfait(float** listStatCand, int* listMedCand, int nbCand){
     return winner;
 }
 
-int jugementMaj(int **table, int nbCol, int nbRow){
+int jugementMaj(int **table, int nbCol, int nbRow, char ** candidats){
     float **listStatCand = (float**)malloc(sizeof(float)*nbRow);
     int *listMedCand = malloc(sizeof(int*)*nbRow);
 
@@ -166,5 +166,5 @@ int jugementMaj(int **table, int nbCol, int nbRow){
         listStatCand[i] = statCandidatJugMaj(getVoteCandidat(table,i,nbRow), nbRow);
         listMedCand[i] = medStatMaj(listStatCand[i]);
     }
-    return mtdGrpInsatisfait(listStatCand, listMedCand, nbCol);
+    return candidats[mtdGrpInsatisfait(listStatCand, listMedCand, nbCol)];
 }

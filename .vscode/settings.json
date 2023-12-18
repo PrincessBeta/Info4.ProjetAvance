@@ -9,7 +9,9 @@
         "sha256.h": "c",
         "lecture_csv.h": "c",
         "sha256_utils.h": "c",
-        "condorcet_schulze.h": "c"
+        "condorcet_schulze.h": "c",
+        "stat.h": "c",
+        "string_view": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
