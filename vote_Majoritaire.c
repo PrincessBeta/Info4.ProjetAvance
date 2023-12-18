@@ -158,10 +158,7 @@ int mtdGrpInsatisfait(float** listStatCand, int* listMedCand, int nbCand){
     return winner;
 }
 
-int jugementMaj(Matrix *csvMatrix){
-    int **table = createVoteTable(csvMatrix);
-    int nbCol = 10;
-    int nbRow = csvMatrix->rows-1;
+int jugementMaj(int **table, int nbCol, int nbRow){
     float **listStatCand = (float**)malloc(sizeof(float)*nbRow);
     int *listMedCand = malloc(sizeof(int*)*nbRow);
 

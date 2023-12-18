@@ -7,13 +7,9 @@
 * @author Paulin Laurent
 */
 
-int jugementMaj(Matrix *csvMatrix);
+/// \brief return l'indice du vainqueur en utilisant la methode jugement majoritaire
+int jugementMaj(int **table, int nbCol, int nbRow);
 
-int medStatMaj(float* stat);
-
-float* statCandidatJugMaj(int* listCand, int nbElecteur);
-
-int* getVoteCandidat(int **table, int numCand, int nbElecteur);
 
 
 #endif 
