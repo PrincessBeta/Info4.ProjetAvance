@@ -1,0 +1,57 @@
+Scores : 
+	Burger	Score
+	------- --------
+	1	16
+	2	24
+	3	14
+	4	14
+	5	11
+	6	9
+	7	12
+
+Mode de scrutin : Uninomial a un tour, 7 candidats, 100 votants, vainqueur =  Obélix, score = 24.0%
+Scores 1er Tour : 
+	Burger	Score
+	------- --------
+	1	16
+	2	24
+	3	14
+	4	14
+	5	11
+	6	9
+	7	12
+
+Mode de scrutin : Uninomial a deux tour, tour 1, 7 candidats, 100 votants, vainqueur =  Astérix, score = 16.0%
+Mode de scrutin : Uninomial a deux tour, tour 1, 7 candidats, 100 votants, vainqueur =  Obélix, score = 24.0%
+Scores 2nd Tour : 
+	Burger	Score
+	------- --------
+	1	48
+	2	42
+	3	0
+	4	0
+	5	0
+	6	0
+	7	0
+
+Mode de scrutin : Uninomial a deux tour, tour 2, 7 candidats, 100 votants, vainqueur =  Astérix, score = 48.0%
+Mode de scrutin : Jugement majoritaire, 7 candidats, 100 votants, vainquer =  Abraracourcix
+Matrice Duels :
+0	42	42	44	39	42	38	
+48	0	43	42	40	45	42	
+41	46	0	48	41	41	42	
+43	39	44	0	36	39	38	
+50	46	45	44	0	54	38	
+43	44	44	43	37	0	35	
+51	48	48	48	43	50	0	
+
+Mode de scrutin : Condorcet minimax, 7 candidats, 100 votants, vainqueur =  Idéfix
+
+Mode de scrutin : Condorcet paire, 7 candidats, 100 votants, vainqueur =  Idéfix
+
+Mode de scrutin : Condorcet schulze, 7 candidats, 100 votants, vainqueur =  Idéfix
+ 
+ax, 10 candidats, 25 votants, vainqueur = Q01->8 - Cheese Burger
+Mode de scrutin : Condorcet paire, 10 candidats, 25 votants, vainqueur = Q01->1 - Burger Black Pepper
+Mode de scrutin : Condorcet schulze, 10 candidats, 25 votants, vainqueur = Q01->8 - Cheese Burger 
+ze, 10 candidats, 39 votants, vainqueur = Q00_Vote->1 - Burger Black Pepper 

@@ -159,6 +159,7 @@ void printMatrix(Matrix *matrice){
         }
         printf("\n");
     }  
+    printf("\n");
 }
 
 void freeMatrix(Matrix *matrice) {

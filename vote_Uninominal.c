@@ -69,13 +69,13 @@ int *createTableauScoreT2(int **voteTable, int numCols, int numRows, int *tab_ga
 
 void printTableauScore(int *tableauScore, int numCols)
 {
-    printf("\nTableau de Scores :\n");
     printf("\tBurger\tScore\n");
     printf("\t------- --------\n");
     for (int i = 0; i < numCols; i++)
     {
         printf("\t%d\t%d\n", i + 1, tableauScore[i]);
     }
+    printf("\n");
 }
 
 void findWinnersUni1(int *tableauScore, int numBurgers, int *tab_gagnant)
