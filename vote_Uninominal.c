@@ -35,7 +35,7 @@ int *createTableauScoreT1(int **voteTable, int numCols, int numRows)
             if (voteTable[j][i] == min && nbVotes == 0){
                 scoreMatrix[i]++;
                 nbVotes++;
-            } else if (nbVotes > 1){
+            } else if (nbVotes == 1){
                 scoreMatrix[i]--; // si une personne vote pour deux burgers, le vote est caduc
             }
         }

@@ -51,8 +51,8 @@ int main(int argc, char *argv[]) {
     int opt;
     char *inputFile = NULL;
     int methode = -1;
-    int useDuelMat= 0;  
-    bool debug = false;
+    int useDuelMat= false;  
+    bool debug = true;
 
     while ((opt = getopt(argc, argv, "i:d:o:m:")) != -1) {
         switch (opt) {
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
                     return 0;
                 }
                 inputFile = optarg;
-                useDuelMat = 1;
+                useDuelMat = true;
                 break;
             case 'o':
                 {
@@ -106,7 +106,8 @@ int main(int argc, char *argv[]) {
 
     int** tableVote = createVoteTable(csvMatrix);
     
-    int numCols = csvMatrix->cols-4;
+    int decalage = (useDuelMat) ? 0 : 4;
+    int numCols = csvMatrix->cols-decalage;
     int numRows = (csvMatrix->rows)-1;
     if(debug){
         printf("Votes : \n");
@@ -116,7 +117,8 @@ int main(int argc, char *argv[]) {
     char* noms_candidats[numCols];
     for (int i = 0; i < numCols; i++)
     {
-        noms_candidats[i] = (csvMatrix->data)[0][i+4];
+        noms_candidats[i] = (csvMatrix->data)[0][i+decalage];+
+        printf("%s\n",noms_candidats[i]);
     }
 
     if ((methode == UNINOMINAL_1 || methode == TOUTES_METHODES) && !useDuelMat) {
@@ -185,8 +187,15 @@ int main(int argc, char *argv[]) {
         , numCols, numRows, jugementMaj(tableVote, numCols, numRows, noms_candidats));
     }
 
-    Matrix* matrice_duels = (useDuelMat) ? csvMatrix : 
-                                create_matrice_duel(trim_matrix(csvMatrix,1,4));
+    Matrix * matrice_duels;
+
+    if (useDuelMat) {
+        matrice_duels = trim_matrix(csvMatrix,1,0);
+    } else {
+        Matrix * temp = trim_matrix(csvMatrix,1,4);
+        matrice_duels = create_matrice_duel(temp);
+    }
+
     if(methode == CONDORCET_MINIMAX || methode == CONDORCET_PAIRES ||
        methode == CONDORCET_SCHULZE || methode == TOUTES_METHODES) {
         if(debug) {

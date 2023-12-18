@@ -10,7 +10,7 @@ else
 	LDFLAGS +=
 endif
 
-EXEC= bin/uni.exe
+EXEC= bin/votatron.exe
 SRC= $(wildcard *.c)
 OBJ= $(SRC:.c=.o)
 
@@ -28,12 +28,12 @@ $(EXEC): $(OBJ)
 %.o: %.c
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
-.PHONY: clean mrpropre
+.PHONY: clean mrproper
 
 clean:
 	@rm -rf *.o
 
-mrpropre: clean
+mrproper: clean
 	@rm -rf $(EXEC) documentation/html *.dot *.pdf
 
 

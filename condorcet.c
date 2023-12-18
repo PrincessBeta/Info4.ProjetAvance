@@ -64,6 +64,8 @@ Sommet condorcet_minimax(Matrix  * m,char ** candidats) {
             col_max = col;
         }
     }
+    printf("maxi : %d %s \n",maxi,candidats[maxi]);
+
     return candidats[maxi];
 }
 
