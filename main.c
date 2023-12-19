@@ -115,6 +115,7 @@ int main(int argc, char *argv[]) {
 
     }
     char* noms_candidats[numCols];
+    if (debug) printf("Liste Candidats : \n");
     for (int i = 0; i < numCols; i++)
     {
         noms_candidats[i] = (csvMatrix->data)[0][i+decalage];
@@ -182,7 +183,7 @@ int main(int argc, char *argv[]) {
 
     } 
 
-    if (methode == JUGEMENT_MAJORITAIRE || methode == TOUTES_METHODES) {
+    if ((methode == JUGEMENT_MAJORITAIRE || methode == TOUTES_METHODES) && !useDuelMat) {
         printf("Mode de scrutin : Jugement majoritaire, %d candidats, %d votants, vainquer = %s\n"
         , numCols, numRows, jugementMaj(tableVote, numCols, numRows, noms_candidats));
     }
@@ -203,8 +204,6 @@ int main(int argc, char *argv[]) {
             printMatrix(matrice_duels);
         }
     }
-
-
 
     if (methode == CONDORCET_MINIMAX || methode == TOUTES_METHODES) {
         printf("Mode de scrutin : Condorcet minimax, %d candidats, %d votants, vainqueur = %s\n"
