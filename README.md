@@ -1,5 +1,5 @@
 # Info4.ProjetAvance
-Info4.GProj, Groupe 7 (Yousra, Yael, Raphael, Paulin)
+Info4.GProj, Groupe 7 (Yousra Arroui, Yael Bourguignon, Raphael Rumin, Paulin Laurent)
 
 Pour la compilation, utiliser make
 on peut les tester sur VoteCondorcet.csv

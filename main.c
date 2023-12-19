@@ -117,8 +117,8 @@ int main(int argc, char *argv[]) {
     char* noms_candidats[numCols];
     for (int i = 0; i < numCols; i++)
     {
-        noms_candidats[i] = (csvMatrix->data)[0][i+decalage];+
-        printf("%s\n",noms_candidats[i]);
+        noms_candidats[i] = (csvMatrix->data)[0][i+decalage];
+        if (debug) printf("%s\n",noms_candidats[i]);
     }
 
     if ((methode == UNINOMINAL_1 || methode == TOUTES_METHODES) && !useDuelMat) {
